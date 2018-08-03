@@ -1,22 +1,14 @@
 {
-  "name": "@mqschwanda/firebase-containers",
+  "name": "@mqschwanda/babel",
   "version": "0.0.1",
   "main": "dist/index.js",
   "license": "MIT",
-  "scripts": {
-    "build": "rollup --config rollup.config.js"
-  },
-  "peerDependencies": {
-    "react": "^x.x.x"
-  },
   "devDependencies": {
     "babel-core": "6",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "rollup": "^0.63.5",
-    "rollup-plugin-babel": "^3.0.7"
+    "babel-preset-stage-3": "^6.24.1"
   }
 }

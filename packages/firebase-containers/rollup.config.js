@@ -1,21 +1,14 @@
-import babel from 'rollup-plugin-babel';
+import { mergeDefaultNpmConfig } from '@mqschwanda/rollup-config-default';
 
-export default {
-  input: 'src/index.js',
-  plugins: [
-    babel(),
-  ],
+const { name } = require('./package.json');
+
+export default mergeDefaultNpmConfig({
   output: {
-    file: 'dist/index.js',
-    name: '@mqschwanda/firebase-container',
-    exports: 'named',
-    format: 'umd',
-    sourceMap: true,
+    name,
     globals: {
       'react': 'React',
     },
   },
-
   // Rollup will only resolve relative module IDs by default. This means that an
   // import statement won't result in moment being included in your bundle –
   // instead, it will be an external dependency that is required at runtime. If
@@ -25,4 +18,4 @@ export default {
   external: [
     'react', // <-- suppresses the warning
   ],
-}
+});

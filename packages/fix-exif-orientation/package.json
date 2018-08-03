@@ -1,13 +1,16 @@
 {
-  "name": "@mqschwanda/firebase-containers",
-  "version": "0.0.5",
+  "name": "@mqschwanda/fix-exif-orientation",
+  "version": "0.0.1",
   "main": "dist/index.js",
-  "license": "MIT",
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },
-  "peerDependencies": {
-    "react": "^x.x.x"
+  "dependencies": {
+    "data-uri-to-u8": "^1.0.0",
+    "exif-component": "^1.0.1",
+    "image-size": "^0.6.3",
+    "process": "^0.11.10",
+    "rotate-component": "^1.0.0"
   },
   "devDependencies": {
     "@mqschwanda/babel": "^0.0.1",
