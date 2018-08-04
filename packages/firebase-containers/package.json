@@ -1,16 +1,16 @@
 {
   "name": "@mqschwanda/firebase-containers",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/mqschwanda/node-monorepo"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mqschwanda/node-monorepo"
   },
   "auther": {
-    "name" : "Mark Q Schwanda",
-    "email" : "mqschwanda@gmail.com",
-    "url" : "https://github.com/mqschwanda"
+    "name": "Mark Q Schwanda",
+    "email": "mqschwanda@gmail.com",
+    "url": "https://github.com/mqschwanda"
   },
   "homepage": "https://github.com/mqschwanda/node-monorepo/tree/master/packages/firebase-containers",
   "bugs": {
