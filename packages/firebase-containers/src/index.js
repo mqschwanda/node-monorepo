@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 
-
 /**
  * handle situations in which a function may need to be called with props to get
  * data but at the same time allow a raw data object to be returned directly
@@ -11,8 +10,7 @@ import React, { PureComponent } from 'react';
 const getDataOrCallFunction = (dataOrFunction, params = null) =>
   typeof dataOrFunction === 'function'
     ? dataOrFunction(params)
-    : dataOrFunction
-
+    : dataOrFunction;
 
 /**
  * apply the _mapQuerySnapshot function to get the desired data but also include
@@ -52,7 +50,7 @@ const mapDoc = (querySnapshot) =>
  * @param  {[type]} querySnapshot [description]
  * @return {[type]}               [description]
  */
-const mapData = (querySnapshot) =>
+const mapQuerySnapshotData = (querySnapshot) =>
   (querySnapshot.docs || {}).length // check if the querySnapshot contains multiple documents
     ? mapDocs(querySnapshot)
     : mapDoc(querySnapshot);
@@ -62,11 +60,11 @@ const mapData = (querySnapshot) =>
  * and data into the component it wraps. If the querySnapshot data needs to be
  * manipulated in any way a custom mapper function can be passed as the second
  * param.
- * @param  {[type]} documentQuery                                          [description]
+ * @param  {[type]} documentQuery                                [description]
  * @param  {[type]} [mapQuerySnapshot = defaultMapQuerySnapshot] [description]
  * @return {[type]}                                              [description]
  */
-export const querySnapshotContainer = (documentQuery, mapQuerySnapshot = mapData) => (Component, LoadingComponent = () => null) =>
+export const querySnapshotContainer = (documentQuery, mapQuerySnapshot = mapQuerySnapshotData) => (Component, LoadingComponent = () => null) =>
   class QuerySnapshot extends PureComponent {
     constructor(props) {
       super(props);

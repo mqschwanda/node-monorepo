@@ -1,8 +1,11 @@
 {
-  "name": "@mqschwanda/rollup-config-default",
+  "name": "@mqschwanda/rollup-scripts",
   "version": "0.0.1",
   "main": "dist/index.js",
   "license": "MIT",
+  "bin": {
+     "rollup-scripts": "./bin/rollup-scripts.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mqschwanda/node-monorepo"
@@ -12,7 +15,7 @@
     "email": "mqschwanda@gmail.com",
     "url": "https://github.com/mqschwanda"
   },
-  "homepage": "https://github.com/mqschwanda/node-monorepo/tree/master/packages/rollup-config-default",
+  "homepage": "https://github.com/mqschwanda/node-monorepo/tree/master/packages/rollup-scripts",
   "bugs": {
     "url": "https://github.com/mqschwanda/node-monorepo/issues",
     "email": "mqschwanda@gmail.com"
@@ -22,11 +25,12 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
+    "@mqschwanda/rollup-config-default": "^0.0.1",
     "deepmerge": "^2.1.1",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-uglify": "^4.0.0"
   },
   "dependencies": {
-    "rollup-plugin-executable": "^1.2.0"
+    "react-dev-utils": "^5.0.1"
   }
 }

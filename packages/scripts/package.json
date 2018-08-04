@@ -1,0 +1,16 @@
+{
+  "name": "@mqschwanda/scripts",
+  "version": "0.0.1",
+  "main": "dist",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup --config rollup.config.js"
+  },
+  "devDependencies": {
+    "@mqschwanda/rollup": "^0.0.1",
+    "@mqschwanda/rollup-config-default": "^0.0.1"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
+}

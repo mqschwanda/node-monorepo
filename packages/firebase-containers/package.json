@@ -3,8 +3,22 @@
   "version": "0.0.5",
   "main": "dist/index.js",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/mqschwanda/node-monorepo"
+  },
+  "auther": {
+    "name" : "Mark Q Schwanda",
+    "email" : "mqschwanda@gmail.com",
+    "url" : "https://github.com/mqschwanda"
+  },
+  "homepage": "https://github.com/mqschwanda/node-monorepo/tree/master/packages/firebase-containers",
+  "bugs": {
+    "url": "https://github.com/mqschwanda/node-monorepo/issues",
+    "email": "mqschwanda@gmail.com"
+  },
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup-scripts build"
   },
   "peerDependencies": {
     "react": "^x.x.x"
@@ -12,6 +26,7 @@
   "devDependencies": {
     "@mqschwanda/babel": "^0.0.1",
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-config-default": "^0.0.1"
+    "@mqschwanda/rollup-config-default": "^0.0.1",
+    "@mqschwanda/rollup-scripts": "^0.0.1"
   }
 }

@@ -3,6 +3,20 @@
   "version": "0.0.1",
   "main": "dist/index.js",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/mqschwanda/node-monorepo"
+  },
+  "auther": {
+    "name" : "Mark Q Schwanda",
+    "email" : "mqschwanda@gmail.com",
+    "url" : "https://github.com/mqschwanda"
+  },
+  "homepage": "https://github.com/mqschwanda/node-monorepo/tree/master/packages/rollup",
+  "bugs": {
+    "url": "https://github.com/mqschwanda/node-monorepo/issues",
+    "email": "mqschwanda@gmail.com"
+  },
   "devDependencies": {
     "rollup": "^0.63.5",
     "rollup-plugin-babel": "^3.0.7",
