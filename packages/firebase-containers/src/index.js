@@ -84,7 +84,7 @@ export const querySnapshotContainer = (documentQuery, mapQuerySnapshot = mapQuer
       getDataOrCallFunction(documentQuery, props) // allow documentQuery to access props
 
     /**
-     * build the initialize the firestore listener
+     * build the initialize the firebase listener
      * @param  {[type]} [props = this.props] [description]
      * @return {[type]}                      [description]
      */
@@ -102,7 +102,7 @@ export const querySnapshotContainer = (documentQuery, mapQuerySnapshot = mapQuer
 
     render() {
       return this.state !== {}
-        ? <Component firestore={this.state} {...this.props} />
+        ? <Component firebase={this.state} {...this.props} />
         : <LoadingComponent />;
     }
   }

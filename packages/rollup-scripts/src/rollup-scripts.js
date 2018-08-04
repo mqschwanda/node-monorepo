@@ -26,20 +26,21 @@ const messages = {
   ),
 };
 
-const getScriptArgs = (_scripts, _pathToScript = (_script) => `./${_script}`) => {
-  const _args = process.argv.slice(2);
-  const _nodeArgs = _index > 0 ? _args.slice(0, _index) : [];
-  const _index = _args.findIndex((arg) => _scripts.includes(arg));
-  const script = _index === -1 ? _args[0] : _args[_index];
-  const _path = _pathToScript(script)
-  const args = [..._nodeArgs, _path, ..._args.slice(_index + 1)];
+const getScriptArgs = (_scripts, pathToScript = (_script) => `./${_script}`) => {
+  const argv = process.argv.slice(2);
+  const nodeArgv = index > 0 ? argv.slice(0, index) : [];
+  const scriptArgv = argv.slice(index + 1);
+  const index = argv.findIndex((arg) => _scripts.includes(arg));
+  const script = index === -1 ? argv[0] : argv[index];
+  const scriptPath = pathToScript(script)
+  const args = [...nodeArgv, scriptPath, ...scriptArgv];
 
   return { script, args };
 };
 
-const pathToScript = (script) =>
+const _pathToScript = (script) =>
   require.resolve(path.join('..', 'dist', script));
-const { script, args } = getScriptArgs(scripts, pathToScript);
+const { script, args } = getScriptArgs(scripts, _pathToScript);
 const { signal, status } = crossSpawn.sync('node', args, { stdio: 'inherit' });
 if (signal) {
   if (signal === 'SIGKILL') console.error(messages.SIGKILL);

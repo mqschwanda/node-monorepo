@@ -1,7 +1,20 @@
 {
   "name": "@mqschwanda/node-monorepo",
   "version": "0.0.1",
-  "author": "mqschwanda",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mqschwanda/node-monorepo"
+  },
+  "auther": {
+    "name": "Mark Q Schwanda",
+    "email": "mqschwanda@gmail.com",
+    "url": "https://github.com/mqschwanda"
+  },
+  "homepage": "https://github.com/mqschwanda/node-monorepo",
+  "bugs": {
+    "url": "https://github.com/mqschwanda/node-monorepo/issues",
+    "email": "mqschwanda@gmail.com"
+  },
   "private": true,
   "workspaces": [
     "packages/*"
