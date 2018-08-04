@@ -34,8 +34,8 @@ const query = firebase.database().collection('<COLLECTION>').where('<QUERY>');
 const container = querySnapshotContainer(query);
 
 const ComponentWithData = container((props) => props.firebase.data.map(doc =>
-  <div key={doc.firebase.querySnapshot.id}>
-    {JSON.stringify(doc.firebase.data)}
+  <div key={doc.querySnapshot.id}>
+    {JSON.stringify(doc.data)}
   </div>
 ));
 ```
