@@ -7,7 +7,6 @@
     "stage-3"
   ],
   "plugins": [
-    "external-helpers",
     "babel-plugin-transform-class-properties"
   ]
 }

@@ -4,7 +4,9 @@ import { uglify } from 'rollup-plugin-uglify';
 export default {
   input: 'src/index.js',
   plugins: [
-    babel(),
+    babel({
+      plugins: ['external-helpers'],
+    }),
     uglify(),
   ],
   output: {

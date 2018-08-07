@@ -1,5 +1,11 @@
 {
   "name": "@mqschwanda/firebase-containers",
+  "keywords": [
+    "firebase",
+    "firestore",
+    "react",
+    "container"
+  ],
   "version": "0.0.7",
   "main": "dist/index.js",
   "license": "MIT",
@@ -18,15 +24,24 @@
     "email": "mqschwanda@gmail.com"
   },
   "scripts": {
-    "build": "rollup-scripts build"
-  },
-  "peerDependencies": {
-    "react": "^x.x.x"
+    "build": "rollup-scripts build",
+    "test": "jest --config jest.config.js"
   },
   "devDependencies": {
     "@mqschwanda/babel": "^0.0.1",
     "@mqschwanda/rollup": "^0.0.1",
     "@mqschwanda/rollup-config-default": "^0.0.1",
-    "@mqschwanda/rollup-scripts": "^0.0.1"
+    "@mqschwanda/rollup-scripts": "^0.0.1",
+    "babel-jest": "^23.4.2",
+    "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15": "^1.0.6",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.4.2",
+    "jest-cli": "^23.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "dependencies": {
+    "react": "^16.4.2"
   }
 }
