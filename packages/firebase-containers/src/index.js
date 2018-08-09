@@ -1,5 +1,5 @@
 export {
   default as snapshotContainer,
-  mapDoc,
-  mapDocs,
+  mapDocSnapshot,
+  mapQuerySnapshot,
 } from './snapshotContainer';
