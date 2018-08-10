@@ -3,11 +3,12 @@ react containers that do firebase data fetching before rendering its correspondi
 
 ## snapshotContainer
 
-The `snapshotContainer` hooks into the `onSnapshot` listener to get realtime updates with Cloud Firestore. The initial call creates a document snapshot immediately with the current data of the single document. Then, each time the contents change, another call updates the document snapshot and data.
+The `snapshotContainer` hooks into the `onSnapshot` listener to get realtime updates with Cloud Firestore. The initial call creates a document snapshot immediately with the current data of the single document. Then, each time the contents change, another call updates the document snapshot.
+
+[Firebase Docs: `onSnapshot`](https://firebase.google.com/docs/firestore/query-data/listen)
 
 ```jsx
 // Example of the firebase `onSnapshot` listener we are wrapping
-// read more: https://firebase.google.com/docs/firestore/query-data/listen
 import firebase from 'firebase';
 
 firebase.database().collection('cities').doc('SF').onSnapshot((snapshot) => {
@@ -38,8 +39,7 @@ const options = {
    * @param  {[type]} snapshot [description]
    * @return {Object}          [description]
    */
-  mapSnapshot: (snapshot) =>
-    ({ snapshot }),
+  mapData: (snapshot) => ({ snapshot }),
 };
 
 const container = snapshotContainer(query, options);
@@ -62,20 +62,9 @@ import { snapshotContainer } from '@mqschwanda/firebase-containers';
 const query = firebase.database().collection('<COLLECTION>').where('<QUERY>');
 const container = snapshotContainer(query);
 
-const ComponentWithData = container((props) => (
-  <div>
-  {props.snapshot.docs.map(doc => (
-    <div key={doc.id}>
-      {JSON.stringify(doc.data)}
-    </div>
-  )}
+const ComponentWithData = container((props) => props.snapshot.docs.map(doc =>
+  <div key={doc.id}>
+    {JSON.stringify(doc.data())}
   </div>
-
-));
+);
 ```
-
-
-
-
-[docs](https://firebase.google.com/docs/reference/js/firebase.firestore.QuerySnapshot)
-- A QuerySnapshot contains zero or more DocumentSnapshot objects representing the results of a query. The documents can be accessed as an array via the docs property or enumerated using the forEach method. The number of documents can be determined via the empty and size properties.
