@@ -2,6 +2,9 @@
 
 
 ### get
+
+##### source
+
 ```jsx
 /**
  * safely access an object's deeply nested values
@@ -13,13 +16,14 @@ const get = path => object =>
   path.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, object);
 ```
 
+##### usage
 
 ```jsx
 import get from '@mqschwanda/safe-get-nested-object';
 
-const object = { nested: { msg: 'it worked!' } };
-const getMsg = get(['nested', 'value']);
-const msg = getMsg(object);
+const object = { nested: { msgs: ['it worked!'] } };
+const getMsg = get(['nested', 'msgs', 0]);
 
-console.log(msg); // --> 'it worked!'
+console.log(getMsg(object)); // --> 'it worked!'
+console.log(getMsg({})); // --> null
 ```
