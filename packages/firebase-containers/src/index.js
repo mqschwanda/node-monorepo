@@ -1,3 +1,3 @@
-export snapshotContainer from './snapshotContainer';
-export referenceContainer from './referenceContainer';
-export userContainer from './userContainer';
+export { default as snapshotContainer } from './snapshotContainer';
+export { default as referenceContainer } from './referenceContainer';
+export { default as userContainer } from './userContainer';
