@@ -17,16 +17,24 @@ You might want to use it to apply several functions in a row.
 
 #### Example
 
-This example demonstrates how to use `compose` to enhance a [store](Store.md) with [`applyMiddleware`](applyMiddleware.md) and a few developer tools from the [redux-devtools](https://github.com/reduxjs/redux-devtools) package.
+This example demonstrates how to use `compose` to enhance a [React.Component]() with multiple higher order components.
 
-```js
+```jsx
+import react from 'react';
 import compose from '@mqschwanda/compose';
+// higher order components we will be composing into a single container...
 import { connect } from 'redux'; // redux connect container
 import passthrough from 'react-passthrough'; // react passthrough container
 
 const container = compose(
-  connect((store) => ({ store })),
-  passthrough({ omit: ['dispatch'] }),
+  connect(({ data }) => ({ data })), // get some date from redux store
+  passthrough({ omit: ['dispatch'] }), // remove the dispatch function from props
+);
+
+const ComponentWithData = container((props) =>
+  <div>
+    {`${props.data}`}
+  </div>
 );
 ```
 
