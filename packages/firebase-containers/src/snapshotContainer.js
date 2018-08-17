@@ -73,15 +73,6 @@ export const snapshotContainer = (query, {
     // remove the listener if it still exists
     typeof this.unsubscribe === 'function' && this.unsubscribe();
   }
-  /**
-   * @name subscribe
-   * @description build and initialize the listener
-   * @type {Function}
-   * @since 0.0.1
-   */
-  subscribe = () => {
-    this.unsubscribe = this.getQuery().onSnapshot(this.onSnapshot);
-  }
 
   /**
    * @name getQuery
@@ -92,6 +83,15 @@ export const snapshotContainer = (query, {
    * @return {firebase.firestore.Query} firestore query
    */
   getQuery = () => getDataOrCallFunction(query, this.props)
+
+  /**
+   * @name marshalProps
+   * @description build the props that will be injected into the sub-component
+   * @type {Function}
+   * @since 0.0.1
+   * @return {Object} props object
+   */
+  marshalProps = () => ({ ...this.props, ...this.state.snapshot })
 
   /**
    * @name onSnapshot
@@ -106,14 +106,16 @@ export const snapshotContainer = (query, {
     this.setState({ snapshot: mapData(snapshot) });
     if (once) this.unsubscribe();
   }
+
   /**
-   * @name marshalProps
-   * @description build the props that will be injected into the sub-component
+   * @name subscribe
+   * @description build and initialize the listener
    * @type {Function}
    * @since 0.0.1
-   * @return {Object} props object
    */
-  marshalProps = () => ({ ...this.props, ...this.state.snapshot })
+  subscribe = () => {
+    this.unsubscribe = this.getQuery().onSnapshot(this.onSnapshot);
+  }
 
   render() {
     return this.state.snapshot

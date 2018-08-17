@@ -41,12 +41,12 @@ Using cdn:
 * @returns container(Component, Loading)
 */
 const container = snapshotContaier(query[, options]);
-// we are curying the arguments so the above container is the same as...
+// we are currying the arguments so the above container is the same as...
 // const container = (Component[, Loading]) =>
 //   snapshotContainer(query[, options])(Component[, Loading])
 ```
 
-The `snapshotContainer` hooks into the `onSnapshot` listener to get realtime updates with Cloud Firestore. The initial call creates a document snapshot immediately with the current data of the single document. Then, each time the contents change, another call updates the document snapshot. The listener triggers a React.Component's `this.setState` and rerenders passing the updated snapshot through to the sub-component.
+The `snapshotContainer` hooks into the `onSnapshot` listener to get realtime updates with Cloud Firestore. The initial call creates a document snapshot immediately with the current data of the single document. Then, each time the contents change, another call updates the document snapshot. The listener triggers a React.Component's `this.setState` and re-renders passing the updated snapshot through to the sub-component.
 
 Example of the firebase `onSnapshot` listener we are wrapping:
 ```jsx
@@ -124,10 +124,11 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
   const Loading = (props) => <div>loading...</div>
   ```
 
-#### Usage
+#### Examples
 
 - single document query
   ```jsx
+  // ./examples/snapshotContaier/single-document-query.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
   import { snapshotContainer } from '@mqschwanda/firebase-containers';
@@ -141,8 +142,26 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
     </div>
   );
   ```
-- compose multiple snapshots
+-  multiple documents query
   ```jsx
+  // ./examples/snapshotContaier/multiple-documents-query.js
+  import React from 'react'; // peer dependency
+  import firebase from 'firebase'; // peer dependency
+  import { snapshotContainer } from '@mqschwanda/firebase-containers';
+
+  const query = firebase.database().collection('cities').where('state == CA');
+  const container = snapshotContainer(query);
+
+  const ComponentWithData = container((props) => props.snapshot.docs.map(doc =>
+    doc.exists &&
+    <div key={doc.id}>
+      {JSON.stringify(doc.data())}
+    </div>
+  );
+  ```
+- compose multiple queries
+  ```jsx
+  // ./examples/snapshotContaier/compose-multiple-queries.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
   import { snapshotContainer, compose } from '@mqschwanda/firebase-containers';
@@ -151,7 +170,7 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
   const SF = Cities.doc('SF');
   const LA = Cities.doc('LA');
 
-  //
+  // use compose to apply multiple higher order components
   const container = compose(
     snapshotContainer(SF, { mapData: (sfSnapshot) => ({ sfSnapshot }) }),
     snapshotContainer(LA, { mapData: (laSnapshot) => ({ laSnapshot }) }),
@@ -165,22 +184,6 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
       <div className='los-angeles'>
         {JSON.stringify(props.laSnapshot.data())}
       </div>
-    </div>
-  );
-  ```
--  multiple documents query
-  ```jsx
-  import React from 'react'; // peer dependency
-  import firebase from 'firebase'; // peer dependency
-  import { snapshotContainer } from '@mqschwanda/firebase-containers';
-
-  const query = firebase.database().collection('cities').where('state == CA');
-  const container = snapshotContainer(query);
-
-  const ComponentWithData = container((props) => props.snapshot.docs.map(doc =>
-    doc.exists &&
-    <div key={doc.id}>
-      {JSON.stringify(doc.data())}
     </div>
   );
   ```
