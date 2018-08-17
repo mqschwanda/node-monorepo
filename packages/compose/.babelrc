@@ -1,0 +1,19 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false
+    }],
+    "react",
+    "stage-3"
+  ],
+  "plugins": [
+    "babel-plugin-transform-class-properties"
+  ],
+  "env": {
+    "test": {
+      "presets": [["env", {
+        "modules": "commonjs"
+      }]]
+    }
+  }
+}

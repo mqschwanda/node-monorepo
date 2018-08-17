@@ -1,0 +1,43 @@
+{
+  "name": "@mqschwanda/compose",
+  "keywords": [
+    "react",
+    "data",
+    "react",
+    "compose"
+  ],
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mqschwanda/node-monorepo"
+  },
+  "auther": {
+    "name": "Mark Q Schwanda",
+    "email": "mqschwanda@gmail.com",
+    "url": "https://github.com/mqschwanda"
+  },
+  "homepage": "https://github.com/mqschwanda/node-monorepo/tree/master/packages/compose",
+  "bugs": {
+    "url": "https://github.com/mqschwanda/node-monorepo/issues",
+    "email": "mqschwanda@gmail.com"
+  },
+  "scripts": {
+    "build": "rollup-scripts build",
+    "test": "jest --config jest.config.js"
+  },
+  "devDependencies": {
+    "@mqschwanda/babel": "^0.0.1",
+    "@mqschwanda/rollup": "^0.0.1",
+    "@mqschwanda/rollup-config-default": "^0.0.1",
+    "@mqschwanda/rollup-scripts": "^0.0.1",
+    "babel-jest": "^23.4.2",
+    "jest": "^23.4.2",
+    "jest-cli": "^23.4.2"
+  },
+  "dependencies": {
+    "firebase": "^5.3.1",
+    "react": "^16.4.2"
+  }
+}
