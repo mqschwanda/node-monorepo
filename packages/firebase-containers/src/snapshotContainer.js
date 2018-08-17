@@ -118,7 +118,7 @@ export const snapshotContainer = (query, {
   render() {
     return this.state.snapshot
       ? <Component {...this.marshalProps()} /> // render sub-component after snapshot is retrieved
-      : <LoadingComponent {...this.marshalProps()} />; // render loading component until snapshot is ready
+      : <Loading {...this.marshalProps()} />; // render loading component until snapshot is ready
   }
 };
 
