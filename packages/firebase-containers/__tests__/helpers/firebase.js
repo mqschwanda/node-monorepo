@@ -1,8 +1,10 @@
 import firebase from 'firebase';
 import 'firebase/firestore'; // Required for side-effects
-import config from './firebase.config';
+// import config from './firebase.config';
 
-
+const config = process.env.FIREBASE_CONFIG
+  ? JSON.parse(process.env.FIREBASE_CONFIG)
+  : require('./firebase.config').default;
 
 export const initFirebase = () => {
   const app = firebase.initializeApp(config);
