@@ -9,10 +9,17 @@
  * (...args) => f(g(h(...args))).
  */
 
-export function compose(...funcs) {
-  if (funcs.length === 0) return arg => arg;
-  if (funcs.length === 1) return funcs[0];
-  return funcs.reduce((a, b) => (...args) => a(b(...args)))
-}
+// export function compose(...funcs) {
+//   if (funcs.length === 0) return arg => arg;
+//   if (funcs.length === 1) return funcs[0];
+//   return funcs.reduce((a, b) => (...args) => a(b(...args)))
+// }
+
+export const compose = (...funcs) =>
+  funcs.length === 0
+    ? arg => arg
+    : funcs.length === 1
+      ? funcs[0]
+      : funcs.reduce((a, b) => (...args) => a(b(...args)));
 
 export default compose;

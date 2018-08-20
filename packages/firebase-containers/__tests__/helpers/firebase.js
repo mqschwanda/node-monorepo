@@ -1,6 +1,8 @@
 import firebase from 'firebase';
 import 'firebase/firestore'; // Required for side-effects
-import config from 'firebase-config';
+import config from './firebase.config';
+
+
 
 export const initFirebase = () => {
   const app = firebase.initializeApp(config);
@@ -9,7 +11,15 @@ export const initFirebase = () => {
     timestampsInSnapshots: true,
   });
 
-  return app;
+  return {
+    app,
+    seeder: {
+      cities: {
+        SF: { name: 'San Francisco' },
+        LA: { name: 'Los Angeles' },
+      },
+    },
+  };
 }
 
 export const killFirebase = (app) => {
