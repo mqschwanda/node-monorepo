@@ -139,9 +139,9 @@ const container = firestoreContainer(query[, options]);
 
 #### Examples
 
-- single document query
+- query single document
   ```jsx
-  // ./examples/firestoreContaier/single-document-query.js
+  // ./examples/firestoreContaier/query-single-document.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
   import { firestoreContainer } from '@mqschwanda/firebase-containers';
@@ -155,9 +155,9 @@ const container = firestoreContainer(query[, options]);
     </div>
   );
   ```
-- multiple documents query
+- query multiple documents
   ```jsx
-  // ./examples/firestoreContaier/multiple-documents-query.js
+  // ./examples/firestoreContaier/query-multiple-documents.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
   import { firestoreContainer } from '@mqschwanda/firebase-containers';
@@ -172,9 +172,9 @@ const container = firestoreContainer(query[, options]);
     </div>
   );
   ```
-- compose multiple queries
+- query composition
   ```jsx
-  // ./examples/firestoreContaier/compose-multiple-queries.js
+  // ./examples/firestoreContaier/query-composition.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
   import { firestoreContainer, compose } from '@mqschwanda/firebase-containers';
