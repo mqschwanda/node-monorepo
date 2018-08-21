@@ -17,7 +17,7 @@ Firebase containers are a collection of [higher-order components](https://reactj
 ## Getting Started
 
 ### Installation
-**Important: Make sure you already have `react` and `firebase` packages already installed or you will also need to install these alongside `@mqschwanda/firebase-containers`.**
+**Important: Make sure you have `react` and `firebase` packages already installed or you will also need to install these alongside `@mqschwanda/firebase-containers`.**
 
 Using yarn, our preferred method:
 
@@ -51,7 +51,7 @@ SF.onSnapshot((snapshot) => {
   console.log(snapshot.data());
 });
 ```
-You can read more about the `onSnapshot` Firebase API we are wrapping [here](https://firebase.google.com/docs/firestore/query-data/listen).
+You can read more about the `onSnapshot` Firebase API we are wrapping <a href="https://firebase.google.com/docs/firestore/query-data/listen" target="_blank">here</a>.
 
 `firestoreContainer` has the following signature:
 ```jsx
@@ -217,7 +217,7 @@ const container = firestoreContainer(query[, options]);
   });
   ```
 
-  You can read more about the `.on('value')` Firebase API we are wrapping [here](https://firebase.google.com/docs/database/admin/retrieve-data#value).
+  You can read more about the `.on('value')` Firebase API we are wrapping <a href="https://firebase.google.com/docs/database/admin/retrieve-data#value" target="_blank">here</a>.
 
   `databaseContainer` has the following signature:
   ```jsx
