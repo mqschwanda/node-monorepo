@@ -1,4 +1,3 @@
-// Firebase Docs: https://firebase.google.com/docs/firestore/query-data/listen
 import React, { PureComponent } from 'react';
 import { getDataOrCallFunction, getDisplayName } from './helpers';
 

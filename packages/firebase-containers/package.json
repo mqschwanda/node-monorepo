@@ -35,9 +35,7 @@
     "babel-jest": "^23.4.2",
     "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-15": "^1.0.6",
     "enzyme-adapter-react-16": "^1.1.1",
-    "firebase-server": "^1.0.0-rc.2",
     "jest": "^23.4.2",
     "jest-cli": "^23.4.2",
     "react-dom": "^16.4.2"
