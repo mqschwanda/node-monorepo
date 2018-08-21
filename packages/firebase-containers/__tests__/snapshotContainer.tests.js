@@ -1,40 +1,71 @@
 import React from 'react';
-import firebase, { initFirebase, killFirebase } from './helpers/firebase';
-import { shallow } from './helpers/enzyme';
+import './helpers/firebase';
+import './helpers/enzyme';
 import { snapshotContainer } from '../dist';
 
-let app, seeder;
+const _key = (object, key = 0) => Object.keys(object)[key];
 
-describe('firestore', () => {
+describe('snapshotContainer', () => {
+  let app, seeder, snapshotContainerFactory;
+
   beforeAll(() => {
     ({ app, seeder } = initFirebase());
+
+    snapshotContainerFactory = containerFactory({
+      container: snapshotContainer,
+      collection: _key(seeder),
+      doc: _key(seeder[_key(seeder)]),
+      query: ({ collection, doc }) =>
+        firebase.firestore().collection(collection).doc(doc),
+    });
   });
 
   afterAll(() => {
     killFirebase(app);
   });
 
-  describe('snapshotContainer', () => {
-    it('should inject snapshot into props', async (done) => {
+  it('should render it\'s sub-component', (done) => {
+    const { WrappedComponent, SubComponent } = snapshotContainerFactory();
+    const TestComponent = mount(<WrappedComponent />);
 
-      const collection = 'cities';
-      const doc = 'SF';
-      const query = firebase.firestore().collection(collection).doc(doc);
+    handleAsyncComponent(function () {
+      expect(TestComponent.contains(SubComponent)).toEqual(true);
 
-      const container = snapshotContainer(query);
-      const Component = container(props => <div />);
-      const test = shallow(<Component />);
+      done();
+    });
+  });
 
+  it('should inject snapshot into props', (done) => {
+    const { collection, doc, WrappedComponent } = snapshotContainerFactory();
+    const TestComponent = shallow(<WrappedComponent />);
 
-      setTimeout(function () {
-        const snapshot = test.prop('snapshot');
+    handleAsyncComponent(function () {
+      const snapshot = TestComponent.prop('snapshot');
 
-        expect(snapshot).toBeDefined();
-        expect(snapshot.id).toEqual(doc);
-        expect(snapshot.data()).toEqual(seeder[collection][doc]);
+      expect(snapshot).toBeDefined();
+      expect(snapshot.id).toEqual(doc);
+      expect(snapshot.data()).toEqual(seeder[collection][doc]);
 
-        done();
-      }, 1000);
+      done();
+    });
+  });
+
+  it('should inject snapshot with dynamic name into props', (done) => {
+    const name = 'name';
+    const mapData = (snapshot) => ({ [name]: snapshot });
+    const { collection, doc, WrappedComponent } = snapshotContainerFactory({
+      options: { mapData },
+    });
+    const TestComponent = shallow(<WrappedComponent />);
+
+    handleAsyncComponent(function () {
+      const snapshot = TestComponent.prop(name);
+
+      expect(snapshot).toBeDefined();
+      expect(snapshot.id).toEqual(doc);
+      expect(snapshot.data()).toEqual(seeder[collection][doc]);
+
+      done();
     });
   });
 });
