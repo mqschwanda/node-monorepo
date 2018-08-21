@@ -1,6 +1,6 @@
 import React from 'react'; // peer dependency
 import firebase from 'firebase'; // peer dependency
-import { snapshotContainer, compose } from '@mqschwanda/firebase-containers';
+import { firestoreContainer, compose } from '@mqschwanda/firebase-containers';
 
 const Cities = firebase.database().collection('cities');
 const SF = Cities.doc('SF');
@@ -8,8 +8,8 @@ const LA = Cities.doc('LA');
 
 // use compose to apply multiple higher order components
 const container = compose(
-  snapshotContainer(SF, { mapData: (sfSnapshot) => ({ sfSnapshot }) }),
-  snapshotContainer(LA, { mapData: (laSnapshot) => ({ laSnapshot }) }),
+  firestoreContainer(SF, { mapData: (sfSnapshot) => ({ sfSnapshot }) }),
+  firestoreContainer(LA, { mapData: (laSnapshot) => ({ laSnapshot }) }),
 );
 
 const ComponentWithData = container((props) =>

@@ -7,7 +7,7 @@ export const userContainer = ({ // options object
     once = false,
 } = {}) => (
   Component,
-  LoadingComponent = () => <div>loading...</div>,
+  Loading = () => <div>loading...</div>,
 ) => class UserContainer extends PureComponent {
   displayName = getDisplayName('userContainer', Component);
 
@@ -39,7 +39,7 @@ export const userContainer = ({ // options object
   render() {
     return this.state.prop
       ? <Component {...this.marshalProps()} />
-      : <LoadingComponent {...this.marshalProps()} />;
+      : <Loading {...this.marshalProps()} />;
   }
 }
 

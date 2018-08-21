@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { getDataOrCallFunction, getDisplayName } from './helpers';
 
 /**
-* @name snapshotContainer
+* @name firestoreContainer
 * @type {Function}
 * @description This container take a firebase query and injects the snapshot
 * into the sub-component.
@@ -13,7 +13,7 @@ import { getDataOrCallFunction, getDisplayName } from './helpers';
 * @return {Function} composable function that accepts react components as params
 * @returns container(Component, Loading)
 */
-export const snapshotContainer = (query, {
+export const firestoreContainer = (query, {
   /**
    * @name mapData
    * @type {Function}
@@ -54,9 +54,9 @@ export const snapshotContainer = (query, {
    * @default (props) => <div>loading...</div>
    */
   Loading = () => <div>loading...</div>,
-) => class SnapshotContainer extends PureComponent {
+) => class FirestoreContainer extends PureComponent {
   // build display name using the sub-component's name
-  displayName = getDisplayName('snapshotContainer', Component);
+  displayName = getDisplayName('firestoreContainer', Component);
 
   constructor(props) {
     super(props);
@@ -100,7 +100,9 @@ export const snapshotContainer = (query, {
    * will also be unsubscribed on first callback.
    * @type {Function}
    * @since 0.0.1
-   * @param {[QuerySnapshot, QueryDocumentSnapshot]} snapshot firebase snapshot
+   * @param {[firebase.firestore.QuerySnapshot, firebase.firestore.QueryDocumentSnapshot]} firestore snapshot
+   * @see {@link https://firebase.google.com/docs/reference/js/firebase.firestore.QuerySnapshot}
+   * @see {@link https://firebase.google.com/docs/reference/js/firebase.firestore.QueryDocumentSnapshotshot}
    */
   onSnapshot = (snapshot) => {
     this.setState({ snapshot: mapData(snapshot) });
@@ -134,4 +136,4 @@ export const snapshotContainer = (query, {
   }
 };
 
-export default snapshotContainer;
+export default firestoreContainer;

@@ -1,10 +1,18 @@
 # firebase-containers
 react containers that do firebase data fetching before rendering its corresponding sub-component.
 
+Table of contents
+- [Todo](#todo)
+- [Installing](#installing)
+- [API](#api)
+  - [firestoreContainer](#firestoreContainer)
+  - [databaseContainer](#databaseContainer)
+  - [userContainer](#userContainer)
+
 ## Todo
 - [ ] add CDN installation
-- [ ] add referenceContainer docs
-- [ ] add userContainer docs
+- [ ] add databaseContainer examples
+- [ ] add userContainer docs & examples
 - [ ] finish writing tests
 
 ## Installing
@@ -27,26 +35,28 @@ Using cdn:
 <script src="<COMMING_SOON>"></script>
 ```
 
-### snapshotContainer
+## API
+
+### firestoreContainer
 ```jsx
 /**
-* @name snapshotContainer
+* @name firestoreContainer
 * @type {Function}
-* @description This container take a firebase query and injects the snapshot
+* @description This container take a firestore query and injects the snapshot
 * into the sub-component.
-* @since 0.0.1
+* @since 0.0.15
 * @param  {firebase.firestore.Query} query firestore Query which we can read or listen to
 * @param  {Object} options options object
 * @return {Function} composable function that accepts react components as params
 * @returns container(Component, Loading)
 */
-const container = snapshotContaier(query[, options]);
+const container = firestoreContainer(query[, options]);
 // we are currying the arguments so the above container is the same as...
 // const container = (Component[, Loading]) =>
-//   snapshotContainer(query[, options])(Component[, Loading])
+//   firestoreContainer(query[, options])(Component[, Loading])
 ```
 
-The `snapshotContainer` hooks into the `onSnapshot` listener to get realtime updates with Cloud Firestore. The initial call creates a document snapshot immediately with the current data of the single document. Then, each time the contents change, another call updates the document snapshot. The listener triggers a React.Component's `this.setState` and re-renders passing the updated snapshot through to the sub-component.
+The `firestoreContainer` hooks into the `onSnapshot` listener to get realtime updates with Cloud Firestore. The initial call creates a document snapshot immediately with the current data of the single document. Then, each time the contents change, another call updates the document snapshot. The listener triggers a React.Component's `this.setState` and re-renders passing the updated snapshot through to the sub-component.
 
 Example of the firebase `onSnapshot` listener we are wrapping:
 ```jsx
@@ -128,13 +138,13 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
 
 - single document query
   ```jsx
-  // ./examples/snapshotContaier/single-document-query.js
+  // ./examples/firestoreContaier/single-document-query.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
-  import { snapshotContainer } from '@mqschwanda/firebase-containers';
+  import { firestoreContainer } from '@mqschwanda/firebase-containers';
 
-  const query = firebase.database().collection('cities').doc('SF');
-  const container = snapshotContainer(query);
+  const query = firebase.firestore().collection('cities').doc('SF');
+  const container = firestoreContainer(query);
 
   const ComponentWithData = container((props) =>
     <div id={props.snapshot.id}>
@@ -144,13 +154,13 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
   ```
 -  multiple documents query
   ```jsx
-  // ./examples/snapshotContaier/multiple-documents-query.js
+  // ./examples/firestoreContaier/multiple-documents-query.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
-  import { snapshotContainer } from '@mqschwanda/firebase-containers';
+  import { firestoreContainer } from '@mqschwanda/firebase-containers';
 
-  const query = firebase.database().collection('cities').where('state == CA');
-  const container = snapshotContainer(query);
+  const query = firebase.firestore().collection('cities').where('state == CA');
+  const container = firestoreContainer(query);
 
   const ComponentWithData = container((props) => props.snapshot.docs.map(doc =>
     doc.exists &&
@@ -161,19 +171,19 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
   ```
 - compose multiple queries
   ```jsx
-  // ./examples/snapshotContaier/compose-multiple-queries.js
+  // ./examples/firestoreContaier/compose-multiple-queries.js
   import React from 'react'; // peer dependency
   import firebase from 'firebase'; // peer dependency
-  import { snapshotContainer, compose } from '@mqschwanda/firebase-containers';
+  import { firestoreContainer, compose } from '@mqschwanda/firebase-containers';
 
-  const Cities = firebase.database().collection('cities');
+  const Cities = firebase.firestore().collection('cities');
   const SF = Cities.doc('SF');
   const LA = Cities.doc('LA');
 
   // use compose to apply multiple higher order components
   const container = compose(
-    snapshotContainer(SF, { mapData: (sfSnapshot) => ({ sfSnapshot }) }),
-    snapshotContainer(LA, { mapData: (laSnapshot) => ({ laSnapshot }) }),
+    firestoreContainer(SF, { mapData: (sfSnapshot) => ({ sfSnapshot }) }),
+    firestoreContainer(LA, { mapData: (laSnapshot) => ({ laSnapshot }) }),
   );
 
   const ComponentWithData = container((props) =>
@@ -187,3 +197,106 @@ You can read more about the `onSnapshot` Firebase API we are wrapping [here](htt
     </div>
   );
   ```
+
+  ### databaseContainer
+  ```jsx
+  /**
+    * @name databaseContainer
+    * @type {Function}
+    * @description This container listens to a database reference and injects the
+    * snapshot into the sub-component.
+    * @since 0.0.15
+    * @param  {firebase.database.Reference} reference database reference which we can read or listen to
+    * @see {@link https://firebase.google.com/docs/reference/js/firebase.database.Reference}
+    * @param  {Object} options options object
+    * @return {Function} composable function that accepts react components as params
+    * @returns container(Component, Loading)
+    */
+    const container = databaseContainer(query[, options]);
+    // we are currying the arguments so the above container is the same as...
+    // const container = (Component[, Loading]) =>
+    //   databaseContainer(query[, options])(Component[, Loading])
+  ```
+
+  The `databaseContainer` hooks into the `.on('value')` listener to get realtime updates with Firebase's database. Firebase data is retrieved by attaching an asynchronous listener to a firebase.database.Reference. The listener triggers a React.Component's `this.setState` and re-renders passing the updated snapshot through to the sub-component.
+
+  Example of the firebase `.on('value')` listener we are wrapping:
+  ```jsx
+  import firebase from 'firebase';
+  const SF = firebase.database().ref('cities/SF');
+
+  SF.on('value', (snapshot) => {
+    console.log(snapshot.val());
+  });
+  ```
+
+  **Important:** The value event is called every time data is changed at the specified database reference, including changes to children. To limit the size of your snapshots, attach only at the lowest level needed for watching changes. For example, attaching a listener to the root of your database is not recommended.
+
+  You can read more about the `.on('value')` Firebase API we are wrapping [here](https://firebase.google.com/docs/database/admin/retrieve-data#value).
+
+  #### arguments
+  - reference (required)
+    ```jsx
+    /**
+     * @description database reference which we can read or listen to
+     * @param  {firebase.database.Reference}
+     * @see {@link https://firebase.google.com/docs/reference/js/firebase.database.Reference}
+     */
+    const reference = firebase.database().ref('cities/SF');
+    ```
+  - options (optional)
+    ```jsx
+    const options = {
+      /**
+       * @name mapData
+       * @type {Function}
+       * @description access the snapshot to map the prop injected into the sub-component
+       * @since 0.0.1
+       * @param {firebase.database.DataSnapshot} snapshot database snapshot
+       * @see {@link https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot}
+       * @return {Object} prop that is merged into sub-component's props
+       * @default (snapshot) => ({ snapshot })
+       */
+      mapData: (snapshot) => ({ snapshot }),
+      // or, lets say you want to map the data to a different name...
+      // mapData: (labledSnapshot) => ({ labledSnapshot }),
+      /**
+       * @name once
+       * @type {Boolean}
+       * @description if you only want the first value and dont want reactive updates
+       * @since 0.0.11
+       * @default false
+       */
+      once: false,
+    };
+    ```
+  - Component (required)
+    ```jsx
+    /**
+     * @name Component
+     * @description sub-component we are injecting the snapshot into
+     * @type {React.Component}
+     * @since 0.0.1
+     * @param {Object} props react props
+     */
+    const Component = (props) => (
+      <div id={props.snapshot.id}>
+        {JSON.stringify(props.snapshot.data())}
+      </div>
+    );
+    ```
+  - Loading (optional)
+    ```jsx
+    /**
+     * @name Loading
+     * @description component displayed while loading the query snapshot
+     * @type {React.Component}
+     * @since 0.0.1
+     * @param {Object} props react props
+     * @default (props) => <div>loading...</div>
+     */
+    const Loading = (props) => <div>loading...</div>
+    ```
+
+### userContainer
+docs coming soon...
