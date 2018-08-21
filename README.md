@@ -1,5 +1,7 @@
 # Node Monorepo
 
+[![Build Status](https://travis-ci.org/mqschwanda/node-monorepo.svg?branch=master)](https://travis-ci.org/mqschwanda/node-monorepo)
+
 `node-monorepo` contains all public [NPM packages](https://www.npmjs.com/~mqschwanda) published under the `@mqschwanda` scope. The 'monorepo' structure is utilized to keep all node development in one place.
 
 ## Built With

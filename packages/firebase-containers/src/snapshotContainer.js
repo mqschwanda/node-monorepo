@@ -71,7 +71,7 @@ export const snapshotContainer = (query, {
 
   componentWillUnmount() {
     // remove the listener if it still exists
-    typeof this.unsubscribe === 'function' && this.unsubscribe();
+    this.unsubscribe();
   }
 
   /**
@@ -114,7 +114,17 @@ export const snapshotContainer = (query, {
    * @since 0.0.1
    */
   subscribe = () => {
-    this.unsubscribe = this.getQuery().onSnapshot(this.onSnapshot);
+    this._unsubscribe = this.getQuery().onSnapshot(this.onSnapshot);
+  }
+
+  /**
+   * @name unsubscribe
+   * @description remove the listener if it still exists
+   * @type {Function}
+   * @since 0.0.15
+   */
+  unsubscribe = () => {
+    if (typeof this._unsubscribe === 'function') this._unsubscribe();
   }
 
   render() {
