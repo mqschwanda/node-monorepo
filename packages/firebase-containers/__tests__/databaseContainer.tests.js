@@ -66,20 +66,4 @@ describe('databaseContainer', () => {
       done();
     });
   });
-
-  it('test', (done) => {
-    const name = 'name';
-    const { collection, doc, WrappedComponent } = databaseContainerFactory();
-    const TestComponent = shallow(<WrappedComponent />);
-
-    handleAsyncComponent(function () {
-      const snapshot = TestComponent.prop(name);
-
-      expect(snapshot).toBeDefined();
-      expect(snapshot.key).toEqual(doc);
-      expect(snapshot.val()).toEqual(seeder[collection][doc]);
-
-      done();
-    });
-  });
 });

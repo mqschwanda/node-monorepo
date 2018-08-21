@@ -52,7 +52,7 @@ describe('firestoreContainer', () => {
   it('should inject snapshot with dynamic name into props', (done) => {
     const name = 'name';
     const options = { mapData: (snapshot) => ({ [name]: snapshot }) };
-    const { collection, doc, WrappedComponent } = databaseContainerFactory({ options });
+    const { collection, doc, WrappedComponent } = firestoreContainerFactory({ options });
     const TestComponent = shallow(<WrappedComponent />);
 
     handleAsyncComponent(function () {
