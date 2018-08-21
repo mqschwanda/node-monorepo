@@ -17,7 +17,7 @@ Firebase containers are a collection of [higher-order components](https://reactj
 ## Getting Started
 
 ### Installation
-**Important:** Make sure you already have `react` and `firebase` packages already installed or you will also need to install these alongside `@mqschwanda/firebase-containers`.
+**Important: Make sure you already have `react` and `firebase` packages already installed or you will also need to install these alongside `@mqschwanda/firebase-containers`.**
 
 Using yarn, our preferred method:
 
@@ -304,15 +304,15 @@ const container = firestoreContainer(query[, options]);
     ```
     #### Examples
 
-    - query single document
+    - reference single document
       ```jsx
       // ./examples/databaseContainer/reference-single-document.js
       import React from 'react'; // peer dependency
       import firebase from 'firebase'; // peer dependency
       import { databaseContainer } from '@mqschwanda/firebase-containers';
 
-      const query = firebase.database().ref('cities/SF');
-      const container = databaseContainer(query);
+      const reference = firebase.database().ref('cities/SF');
+      const container = databaseContainer(reference);
 
       const ComponentWithData = container((props) =>
         <div id={props.snapshot.key}>
@@ -329,7 +329,7 @@ const container = firestoreContainer(query[, options]);
 
       const reference = firebase.database().ref('cities');
       /**
-       * Firebase refs do not return a mappable array of documents that we can easily
+       * Firebase refs do not return a mappable array of documents that we can
        * use with react. Instead we need to map the data ourselves by iterating
        * through each document found and inject the array alongside the original
        * snapshot.
@@ -340,7 +340,7 @@ const container = firestoreContainer(query[, options]);
 
         return { docs, snapshot };
       }
-      const container = databaseContainer(query, { mapData });
+      const container = databaseContainer(reference, { mapData });
 
       const ComponentWithData = container((props) => props.docs.map(doc =>
         doc.exists &&
