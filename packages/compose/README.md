@@ -2,6 +2,8 @@
 
 `compose(...functions)`
 
+Inspired by [Redux's compose function](https://redux.js.org/api/compose).
+
 Composes functions from right to left.
 
 This is a functional programming utility, and is included in Redux as a convenience.  
