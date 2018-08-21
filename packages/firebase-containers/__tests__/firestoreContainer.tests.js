@@ -1,4 +1,3 @@
-import React from 'react';
 import './helpers/firebase';
 import './helpers/enzyme';
 import { firestoreContainer } from '../dist';

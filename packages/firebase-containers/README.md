@@ -1,13 +1,13 @@
 # firebase-containers
 react containers that do firebase data fetching before rendering its corresponding sub-component.
 
-Table of contents
+## Table of contents
 - [Todo](#todo)
 - [Installing](#installing)
 - [API](#api)
-  - [firestoreContainer](#firestoreContainer)
-  - [databaseContainer](#databaseContainer)
-  - [userContainer](#userContainer)
+  - [firestoreContainer](#firestorecontainer)
+  - [databaseContainer](#databasecontainer)
+  - [userContainer](#usercontainer)
 
 ## Todo
 - [ ] add CDN installation
