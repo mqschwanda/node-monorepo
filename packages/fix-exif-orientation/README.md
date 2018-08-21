@@ -1,6 +1,5 @@
 # fix-exif-orientation
 
-
 ### fixExifOrientation
 
 ```js
