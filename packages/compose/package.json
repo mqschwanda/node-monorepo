@@ -32,12 +32,5 @@
     "@mqschwanda/rollup": "^0.0.1",
     "@mqschwanda/rollup-config-default": "^0.0.1",
     "@mqschwanda/rollup-scripts": "^0.0.1",
-    "babel-jest": "^23.4.2",
-    "jest": "^23.4.2",
-    "jest-cli": "^23.4.2"
-  },
-  "dependencies": {
-    "firebase": "^5.3.1",
-    "react": "^16.4.2"
   }
 }

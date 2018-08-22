@@ -18,10 +18,11 @@
     "email": "mqschwanda@gmail.com"
   },
   "scripts": {
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup-scripts build"
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
+    "@mqschwanda/rollup-scripts": "^0.0.1",
     "deepmerge": "^2.1.1",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-uglify": "^4.0.0"
