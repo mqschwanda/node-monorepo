@@ -1,3 +1,9 @@
+/**
+ * [NOTE]: If these test are throwing errors make sure either
+ * `process.env.FIREBASE_CONFIG` is set, or `firebase.config.js` exports the
+ * config object.
+ */
+
 import './helpers/firebase';
 
 describe('firebase', () => {
@@ -12,7 +18,7 @@ describe('firebase', () => {
   });
 
   describe('firestore', () => {
-    it('should connect', (done) => {
+    it('should configure service', (done) => {
       const { firestore } = firebase.firestore()._config.firebaseApp.services_;
       expect(firestore).toBeDefined();
 
@@ -21,7 +27,7 @@ describe('firebase', () => {
   });
 
   describe('database', () => {
-    it('should connect', (done) => {
+    it('should configure service', (done) => {
       const { database } = firebase.database().repo_.app.services_;
       expect(database).toBeDefined();
 

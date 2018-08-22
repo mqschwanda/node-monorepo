@@ -1,8 +1,12 @@
+import '@mqschwanda/enzyme';
+
 import './helpers/firebase';
-import './helpers/enzyme';
 import { databaseContainer } from '../dist';
 
-const _key = (object, key = 0) => Object.keys(object)[key];
+const _key = (payload, key = 0) =>
+  typeof key === 'string' || Array.isArray(payload)
+    ? payload[key]
+    : Object.keys(payload)[key];
 
 describe('databaseContainer', () => {
   let app, seeder, databaseContainerFactory;
@@ -50,7 +54,7 @@ describe('databaseContainer', () => {
     });
   });
 
-  it('should inject snapshot with dynamic name into props', (done) => {
+  it('should inject mapped snapshot into props', (done) => {
     const name = 'name';
     const options = { mapData: (snapshot) => ({ [name]: snapshot }) };
     const { collection, doc, WrappedComponent } = databaseContainerFactory({ options });

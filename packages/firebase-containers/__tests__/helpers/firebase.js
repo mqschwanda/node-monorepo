@@ -1,7 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
 import 'firebase/firestore'; // Required for side-effects
-// import config from './firebase.config';
 
 const config = process.env.FIREBASE_CONFIG
   ? JSON.parse(process.env.FIREBASE_CONFIG)

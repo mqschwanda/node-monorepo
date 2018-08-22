@@ -1,0 +1,25 @@
+{
+  "name": "@mqschwanda/jest",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/mqschwanda/node-monorepo"
+  },
+  "auther": {
+    "name" : "Mark Q Schwanda",
+    "email" : "mqschwanda@gmail.com",
+    "url" : "https://github.com/mqschwanda"
+  },
+  "homepage": "https://github.com/mqschwanda/node-monorepo/tree/master/packages/jest",
+  "bugs": {
+    "url": "https://github.com/mqschwanda/node-monorepo/issues",
+    "email": "mqschwanda@gmail.com"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.4.2",
+    "jest": "^23.4.2",
+    "jest-cli": "^23.4.2"
+  }
+}
