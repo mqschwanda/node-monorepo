@@ -1,8 +1,8 @@
 # Node Monorepo
 
 [![Build Status](https://travis-ci.org/mqschwanda/node-monorepo.svg?branch=master)](https://travis-ci.org/mqschwanda/node-monorepo)
-![License](https://img.shields.io/npm/l/express.svg)
-![Gluten Free](https://img.shields.io/badge/gluten-free-yellow.svg)
+[![License](https://img.shields.io/npm/l/express.svg)](./LICENSE)
+[![Gluten Free](https://img.shields.io/badge/gluten-free-yellow.svg)](https://celiac.org/live-gluten-free/glutenfreediet/food-options/)
 
 `node-monorepo` contains all public [NPM packages](https://www.npmjs.com/~mqschwanda) published under the `@mqschwanda` scope. The 'monorepo' structure is utilized to keep all node development in one place.
 

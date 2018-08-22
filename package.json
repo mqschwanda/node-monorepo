@@ -1,5 +1,6 @@
 {
   "name": "@mqschwanda/node-monorepo",
+  "description": "contains all public NPM packages published under the @mqschwanda scope",
   "version": "0.0.1",
   "repository": {
     "type": "git",
