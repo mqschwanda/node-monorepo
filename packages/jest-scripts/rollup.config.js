@@ -7,12 +7,24 @@ const { name } = require('./package.json');
 
 export default [
   mergeDefaultNpmConfig({
-    input: 'src/index.js',
+    input: 'src/test.js',
     output: {
-      name,
+      name: `${name}-test`,
+      file: 'dist/test.js',
       globals: {
-        chalk: 'chalk',
-        child_process: 'child_process',
+        '@mqschwanda/scripts': 'scripts',
+      },
+    },
+  }),
+  mergeDefaultExecutableConfig({
+    input: 'src/jest-scripts.js',
+    output: {
+      name: 'jest-scripts',
+      file: 'bin/jest-scripts.js',
+      banner: '#!/usr/bin/env node',
+      globals: {
+        path: 'path',
+        'react-dev-utils/crossSpawn': 'crossSpawn',
       },
     },
     // Rollup will only resolve relative module IDs by default. This means that an
@@ -22,15 +34,8 @@ export default [
     // option, which makes your intentions explicit
     // see: https://github.com/rollup/rollup/wiki/Troubleshooting#treating-module-as-external-dependency
     external: [
-      'chalk', // <-- suppresses the warning
-      'child_process', // <-- suppresses the warning
+      'path', // <-- suppresses the warning
+      'react-dev-utils/crossSpawn', // <-- suppresses the warning
     ],
-  }),
-  mergeDefaultExecutableConfig({
-    input: 'src/handle-unhandled-rejections.js',
-    output: {
-      name: 'handle-unhandled-rejections',
-      file: 'dist/handle-unhandled-rejections.js'
-    },
   }),
 ];

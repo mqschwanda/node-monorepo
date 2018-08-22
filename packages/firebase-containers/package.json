@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "rollup-scripts build",
-    "test": "jest --config jest.config.js"
+    "test": "jest-scripts test"
   },
   "devDependencies": {
     "@mqschwanda/babel": "^0.0.1",
@@ -38,6 +38,7 @@
     "@mqschwanda/enzyme": "^0.0.1",
     "@mqschwanda/jest": "^0.0.1",
     "@mqschwanda/jest-config-default": "^0.0.1",
+    "@mqschwanda/jest-scripts": "^0.0.1",
     "@mqschwanda/rollup": "^0.0.1",
     "@mqschwanda/rollup-config-default": "^0.0.1",
     "@mqschwanda/rollup-scripts": "^0.0.1",
