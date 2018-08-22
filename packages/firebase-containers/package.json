@@ -42,6 +42,7 @@
     "@mqschwanda/rollup-config-default": "^0.0.1",
     "@mqschwanda/rollup-scripts": "^0.0.1",
     "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
+    "firebase": "^5.4.0",
     "react": "^16.4.2"
   },
   "peerDependencies": {
