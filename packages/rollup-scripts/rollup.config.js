@@ -11,14 +11,30 @@ export default [
     output: {
       name: `${name}-build`,
       file: 'dist/build.js',
+      globals: {
+        '@mqschwanda/scripts': 'scripts',
+      }
     },
+    external: [
+      '@mqschwanda/scripts/dist/handle-unhandled-rejections.js',
+      '@mqschwanda/scripts',
+    ],
   }),
   mergeDefaultExecutableConfig({
     input: 'src/rollup-scripts.js',
     output: {
       name: 'rollup-scripts',
       file: 'bin/rollup-scripts.js',
+      banner: '#!/usr/bin/env node',
+      globals: {
+        path: 'path',
+        'react-dev-utils/crossSpawn': 'crossSpawn',
+      }
     },
-    banner: '#!/usr/bin/env node',
+    external: [
+      '@mqschwanda/scripts/dist/handle-unhandled-rejections.js',
+      'path',
+      'react-dev-utils/crossSpawn'
+    ],
   }),
 ];

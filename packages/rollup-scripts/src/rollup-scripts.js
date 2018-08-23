@@ -7,7 +7,7 @@ import '@mqschwanda/scripts/dist/handle-unhandled-rejections.js';
 import path from 'path';
 import crossSpawn from 'react-dev-utils/crossSpawn';
 
-const scripts = ['build', 'eject', 'start', 'test'];
+const scripts = ['build'];
 
 const scriptError = (script) => `Unknown script: "${script}".`;
 const buildError = (reason) =>

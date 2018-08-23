@@ -7,19 +7,19 @@ import _config from '../rollup.config';
  * @param  {[type]} config [description]
  * @return {[type]}        [description]
  */
-const trimConfig = (config) => {
-  if (config.output) {
-    if (config.output.name) delete config.output.name;
-    if (config.output.globals) delete config.output.globals;
+const trimConfig = (c) => {
+  if (c.output) {
+    if (c.output.name) delete c.output.name;
+    if (c.output.globals) delete c.output.globals;
   }
 
-  if (config.externals) delete config.externals;
+  if (c.externals) delete c.externals;
 
-  return config;
+  return c;
 };
 
 const mergeConfig = (oldConfig, newConfig) =>
-  deepmerge(oldConfig, trimConfig(newConfig));
+  deepmerge(trimConfig(oldConfig), newConfig);
 
 /**
  * default package configuration
@@ -28,8 +28,8 @@ const mergeConfig = (oldConfig, newConfig) =>
 export const config = _config;
 export const defaultConfig = _config;
 
-export const mergeDefaultConfig = (config) =>
-  mergeConfig(defaultConfig, config);
+export const mergeDefaultConfig = (newConfig) =>
+  mergeConfig(defaultConfig, newConfig);
 
 /**
  * npm package configuration
@@ -37,8 +37,8 @@ export const mergeDefaultConfig = (config) =>
  */
 const defaultNpmConfig = defaultConfig;
 
-export const mergeDefaultNpmConfig = (config) =>
-  mergeConfig(defaultNpmConfig, config);
+export const mergeDefaultNpmConfig = (newConfig) =>
+  mergeConfig(defaultNpmConfig, newConfig);
 
 /**
  * npm executable package configuration
@@ -48,7 +48,7 @@ const defaultExecutablConfig = mergeDefaultNpmConfig({
   plugins: [executable()],
 });
 
-export const mergeDefaultExecutableConfig = (config) =>
-  mergeConfig(defaultExecutablConfig, config);
+export const mergeDefaultExecutableConfig = (newConfig) =>
+  mergeConfig(defaultExecutablConfig, newConfig);
 
 export default config;
