@@ -1,8 +1,5 @@
 const { config } = require('@mqschwanda/jest-config-default');
-
-module.exports = config;
-
-// module.exports = {
+// const config = {
 //   testURL: 'http://localhost',
 //   testRegex: ".*.tests\.js$",
 //   verbose: true,
@@ -15,3 +12,7 @@ module.exports = config;
 //     '^.+\\.js$': 'babel-jest'
 //   },
 // };
+
+// config.verbose = false;
+
+module.exports = config;

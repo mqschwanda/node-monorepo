@@ -2,6 +2,10 @@ import React from 'react';
 import firebase from 'firebase';
 import 'firebase/firestore'; // Required for side-effects
 
+/**
+ * pass the config object through the node env or create a firebase.config file
+ * that exports the config object
+ */
 const config = process.env.FIREBASE_CONFIG
   ? JSON.parse(process.env.FIREBASE_CONFIG)
   : require('./firebase.config').default;
@@ -20,6 +24,10 @@ export const initFirebase = () => {
         SF: { name: 'San Francisco' },
         LA: { name: 'Los Angeles' },
       },
+      users: [{
+        email: 'test.user@gmail.com',
+        password: 'password',
+      }]
     },
   };
 };
@@ -31,14 +39,15 @@ export const killFirebase = (app) => {
 };
 global.killFirebase = killFirebase;
 
-export const containerFactory = ({ container, query: _query, collection, doc }) => ({ options = {} } = {}) => {
-  const query = _query({ collection, doc });
+export const containerFactory = ({ container, query: _query, collection, doc }) =>
+  ({ options = {} } = {}) => {
+    const query = _query ? _query({ collection, doc }) : null;
+    const SubComponent = props => <div />;
+    const args = query ? [query, options] : [options];
+    const WrappedComponent = container(...args)(SubComponent);
 
-  const SubComponent = props => <div />;
-  const WrappedComponent = container(query, options)(SubComponent);
-
-  return { collection, doc, query, SubComponent, WrappedComponent };
-};
+    return { collection, doc, query, SubComponent, WrappedComponent };
+  };
 global.containerFactory = containerFactory;
 
 export default firebase;

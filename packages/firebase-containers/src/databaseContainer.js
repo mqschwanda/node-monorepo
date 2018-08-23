@@ -40,18 +40,20 @@ export const databaseContainer = (reference, {
 ) => (
   /**
    * @name Component
-   * @type {React.Component}
+   * @type {[React.Component, function]}
    * @description sub-component we are injecting the snapshot into
    * @since 0.0.1
    * @param {Object} props react props
+   * @returns {React.Element}
    */
   Component,
   /**
    * @name Loading
-   * @type {React.Component}
+   * @type {[React.Component, function]}
    * @description component displayed while loading the query snapshot
    * @since 0.0.1
    * @param {Object} props react props
+   * @returns {React.Element}
    * @default (props) => <div>loading...</div>
    */
   Loading = (props) => <div>loading...</div>,
@@ -96,7 +98,7 @@ export const databaseContainer = (reference, {
      * @since 0.0.1
      */
     unsubscribe = () => {
-      this.reference && this.reference.off();
+      this.reference && typeof this.reference.off === 'function' && this.reference.off();
     }
 
     /**

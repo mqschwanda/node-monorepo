@@ -3,10 +3,7 @@ import '@mqschwanda/enzyme';
 import './helpers/firebase';
 import { firestoreContainer } from '../dist';
 
-const _key = (payload, key = 0) =>
-  typeof key === 'string' || Array.isArray(payload)
-    ? payload[key]
-    : Object.keys(payload)[key];
+const _key = (payload, key = 0) => Object.keys(payload)[key];
 
 describe('firestoreContainer', () => {
   let app, seeder, firestoreContainerFactory;
@@ -31,7 +28,7 @@ describe('firestoreContainer', () => {
     const { WrappedComponent, SubComponent } = firestoreContainerFactory();
     const TestComponent = mount(<WrappedComponent />);
 
-    handleAsyncComponent(function () {
+    handleAsyncComponent(() => {
       expect(TestComponent.contains(SubComponent)).toEqual(true);
 
       done();
@@ -42,7 +39,7 @@ describe('firestoreContainer', () => {
     const { collection, doc, WrappedComponent } = firestoreContainerFactory();
     const TestComponent = shallow(<WrappedComponent />);
 
-    handleAsyncComponent(function () {
+    handleAsyncComponent(() => {
       const snapshot = TestComponent.prop('snapshot');
 
       expect(snapshot).toBeDefined();
@@ -59,7 +56,7 @@ describe('firestoreContainer', () => {
     const { collection, doc, WrappedComponent } = firestoreContainerFactory({ options });
     const TestComponent = shallow(<WrappedComponent />);
 
-    handleAsyncComponent(function () {
+    handleAsyncComponent(() => {
       const snapshot = TestComponent.prop(name);
 
       expect(snapshot).toBeDefined();

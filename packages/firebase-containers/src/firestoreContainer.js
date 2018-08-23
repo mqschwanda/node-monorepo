@@ -38,18 +38,20 @@ export const firestoreContainer = (query, {
 } = {}) => (
   /**
    * @name Component
-   * @type {React.Component}
+   * @type {[React.Component, function]}
    * @description sub-component we are injecting the snapshot into
    * @since 0.0.1
    * @param {Object} props react props
+   * @returns {React.Element}
    */
   Component,
   /**
    * @name Loading
-   * @type {React.Component}
+   * @type {[React.Component, function]}
    * @description component displayed while loading the query snapshot
    * @since 0.0.1
    * @param {Object} props react props
+   * @returns {React.Element}
    * @default (props) => <div>loading...</div>
    */
   Loading = () => <div>loading...</div>,
@@ -125,7 +127,7 @@ export const firestoreContainer = (query, {
    * @since 0.0.15
    */
   unsubscribe = () => {
-    if (typeof this._unsubscribe === 'function') this._unsubscribe();
+    this._unsubscribe && typeof this._unsubscribe === 'function' && this._unsubscribe();
   }
 
   render() {

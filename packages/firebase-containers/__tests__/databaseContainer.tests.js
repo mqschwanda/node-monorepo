@@ -3,10 +3,7 @@ import '@mqschwanda/enzyme';
 import './helpers/firebase';
 import { databaseContainer } from '../dist';
 
-const _key = (payload, key = 0) =>
-  typeof key === 'string' || Array.isArray(payload)
-    ? payload[key]
-    : Object.keys(payload)[key];
+const _key = (payload, key = 0) => Object.keys(payload)[key];
 
 describe('databaseContainer', () => {
   let app, seeder, databaseContainerFactory;
@@ -31,19 +28,18 @@ describe('databaseContainer', () => {
     const { WrappedComponent, SubComponent } = databaseContainerFactory();
     const TestComponent = mount(<WrappedComponent />);
 
-    handleAsyncComponent(function () {
+    handleAsyncComponent(() => {
       expect(TestComponent.contains(SubComponent)).toEqual(true);
 
       done();
     });
   });
 
-
   it('should inject snapshot into props', (done) => {
     const { collection, doc, WrappedComponent } = databaseContainerFactory();
     const TestComponent = shallow(<WrappedComponent />);
 
-    handleAsyncComponent(function () {
+    handleAsyncComponent(() => {
       const snapshot = TestComponent.prop('snapshot');
 
       expect(snapshot).toBeDefined();
@@ -60,7 +56,7 @@ describe('databaseContainer', () => {
     const { collection, doc, WrappedComponent } = databaseContainerFactory({ options });
     const TestComponent = shallow(<WrappedComponent />);
 
-    handleAsyncComponent(function () {
+    handleAsyncComponent(() => {
       const snapshot = TestComponent.prop(name);
 
       expect(snapshot).toBeDefined();

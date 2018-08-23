@@ -24,7 +24,11 @@ export const userContainer = ({ // options object
   }
 
   subscribe = () => {
-    this.unsubscribe = firebase.auth().onAuthStateChanged(this.onAuthStateChanged); // Listen to the Firebase Auth state and set the local state.
+    this._unsubscribe = firebase.auth().onAuthStateChanged(this.onAuthStateChanged); // Listen to the Firebase Auth state and set the local state.
+  }
+
+  unsubscribe = () => {
+    this._unsubscribe && typeof this._unsubscribe === 'function' && this._unsubscribe();
   }
 
   onAuthStateChanged = (user) =>
