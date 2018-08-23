@@ -1,11 +1,11 @@
 {
   "name": "@mqschwanda/rollup-scripts",
   "description": "scripts used by @mqschwanda/rollup",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/build.js",
   "license": "MIT",
   "bin": {
-     "rollup-scripts": "./bin/rollup-scripts.js"
+    "rollup-scripts": "./bin/rollup-scripts.js"
   },
   "repository": {
     "type": "git",
@@ -26,12 +26,6 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-config-default": "^0.0.1",
-    "deepmerge": "^2.1.1",
-    "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-uglify": "^4.0.0"
-  },
-  "dependencies": {
-    "react-dev-utils": "^5.0.1"
+    "@mqschwanda/rollup-config-default": "^0.0.3"
   }
 }
