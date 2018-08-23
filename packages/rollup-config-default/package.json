@@ -1,5 +1,6 @@
 {
   "name": "@mqschwanda/rollup-config-default",
+  "description": "configuration used by @mqschwanda/rollup",
   "version": "0.0.1",
   "main": "dist/index.js",
   "license": "MIT",

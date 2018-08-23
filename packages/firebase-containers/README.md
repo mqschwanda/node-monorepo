@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/mqschwanda/node-monorepo.svg?branch=master)](https://travis-ci.org/mqschwanda/node-monorepo)
 ![License](https://img.shields.io/npm/l/express.svg)
 [![NPM Downlaods](https://img.shields.io/npm/dt/@mqschwanda/firebase-containers.svg)](https://www.npmjs.com/package/@mqschwanda/firebase-containers)
-
+[![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@mqschwanda/firebase-containers.svg)](https://github.com/mqschwanda/node-monorepo/tree/master/packages/firebase-containers)
+[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/@mqschwanda/firebase-containers.svg)](https://github.com/mqschwanda/node-monorepo/tree/master/packages/firebase-containers)
 
 Firebase containers are a collection of [higher-order components](https://reactjs.org/docs/higher-order-components.html) that do firebase data fetching before rendering their corresponding sub-component.
 
