@@ -26,9 +26,7 @@
     "@mqschwanda/rollup-scripts": "^0.0.1",
     "deepmerge": "^2.1.1",
     "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-executable": "^1.2.0",
     "rollup-plugin-uglify": "^4.0.0"
-  },
-  "dependencies": {
-    "rollup-plugin-executable": "^1.2.0"
   }
 }

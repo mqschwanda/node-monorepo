@@ -8,7 +8,12 @@ import _config from '../rollup.config';
  * @return {[type]}        [description]
  */
 const trimConfig = (config) => {
-  if ((config.output || {}).name) delete config.output.name;
+  if (config.output) {
+    if (config.output.name) delete config.output.name;
+    if (config.output.globals) delete config.output.globals;
+  }
+
+  if (config.externals) delete config.externals;
 
   return config;
 };
