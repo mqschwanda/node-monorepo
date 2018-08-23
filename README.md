@@ -7,7 +7,17 @@
 `node-monorepo` contains all public [NPM packages](https://www.npmjs.com/~mqschwanda) published under the `@mqschwanda` scope. The 'monorepo' structure is utilized to keep all node development in one place.
 
 ### Packages
+- [@mqschwanda/babel](https://github.com/mqschwanda/node-monorepo/tree/master/packages/babel)
+- [@mqschwanda/compose](https://github.com/mqschwanda/node-monorepo/tree/master/packages/compose)
+- [@mqschwanda/curry](https://github.com/mqschwanda/node-monorepo/tree/master/packages/curry)
+- [@mqschwanda/enzyme](https://github.com/mqschwanda/node-monorepo/tree/master/packages/enzyme)
 - [@mqschwanda/firebase-containers](https://github.com/mqschwanda/node-monorepo/tree/master/packages/firebase-containers) - Firebase containers are a collection of [higher-order components](https://reactjs.org/docs/higher-order-components.html) that do firebase data fetching before rendering their corresponding sub-component.
+- [@mqschwanda/fix-exif-orientation](https://github.com/mqschwanda/node-monorepo/tree/master/packages/fix-exif-orientation)
+- [@mqschwanda/jest-scripts](https://github.com/mqschwanda/node-monorepo/tree/master/packages/jest-scripts)
+- [@mqschwanda/rollup](https://github.com/mqschwanda/node-monorepo/tree/master/packages/rollup)
+- [@mqschwanda/rollup-config-default](https://github.com/mqschwanda/node-monorepo/tree/master/packages/rollup-config-default)
+- [@mqschwanda/rollup-scripts](https://github.com/mqschwanda/node-monorepo/tree/master/packages/rollup-scripts)
+- [@mqschwanda/scripts](https://github.com/mqschwanda/node-monorepo/tree/master/packages/scripts)
 
 ### Built With
 
