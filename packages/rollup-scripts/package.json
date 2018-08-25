@@ -1,7 +1,7 @@
 {
   "name": "@mqschwanda/rollup-scripts",
   "description": "scripts used by @mqschwanda/rollup",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/build.js",
   "license": "MIT",
   "bin": {
@@ -26,7 +26,9 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-config-default": "^0.0.5",
+    "@mqschwanda/rollup-config-default": "^0.0.5"
+  },
+  "dependencies": {
     "@mqschwanda/scripts": "^0.0.6",
     "react-dev-utils": "^5.0.2"
   }
