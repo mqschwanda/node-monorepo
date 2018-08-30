@@ -45,20 +45,20 @@ export const replacePlugins = (oldConfig, plugins = []) => {
  * @return {[type]}           [description]
  */
 export const trimPlugins = (oldConfig, plugins = []) => {
-  console.log({ oldConfig, plugins });
+  console.log({ oldConfig: oldConfig.plugins, plugins });
   const config = {
     ...oldConfig,
     plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
   };
 
-  console.log({ config });
+  console.log({ config: config.plugins });
 
   plugins.forEach(plugin => {
     const i = plugins.findIndex(({ name }) => name === plugin.name);
     if (i > -1) config.plugins.splice(i, 1);
   });
 
-  console.log({ config });
+  console.log({ config: config.plugins });
 
   return config;
 }
