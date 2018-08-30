@@ -18,6 +18,10 @@ const nodeConfig = mergeDefaultNodeConfig({
   },
   external: getExternals(packageJSON),
   plugins: [
+    commonjs(),
+    nodeResolve({
+      preferBuiltins: true,
+    }),
     babel({
       babelrc: false,
       presets: [
@@ -30,10 +34,6 @@ const nodeConfig = mergeDefaultNodeConfig({
       ],
     }),
     uglify(),
-    nodeResolve({
-      preferBuiltins: true,
-    }),
-    commonjs(),
   ],
 });
 
