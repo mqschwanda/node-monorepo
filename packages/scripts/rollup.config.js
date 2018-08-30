@@ -9,6 +9,19 @@ import { uglify } from 'rollup-plugin-uglify';
 
 import packageJSON, { name } from './package.json';
 
+const plugins = [
+  babel({
+    babelrc: false,
+    presets: [
+      ['env', { modules: false }],
+      'stage-3',
+    ],
+    exclude: '**/node_modules/**',
+    plugins: ['external-helpers'],
+  }),
+  uglify(),
+];
+
 const nodeConfig = mergeDefaultNodeConfig({
   input: 'src/index.js',
   output: {
@@ -18,18 +31,7 @@ const nodeConfig = mergeDefaultNodeConfig({
     'child_process',
     ...getExternals(packageJSON)
   ],
-  plugins: [
-    babel({
-      babelrc: false,
-      presets: [
-        ['env', { modules: false }],
-        'stage-3',
-      ],
-      exclude: '**/node_modules/**',
-      plugins: ['external-helpers'],
-    }),
-    uglify(),
-  ],
+  plugins,
 });
 
 const executableConfig = mergeDefaultExecutableConfig({
@@ -38,18 +40,7 @@ const executableConfig = mergeDefaultExecutableConfig({
     name: 'handle-unhandled-rejections',
     file: 'dist/handle-unhandled-rejections.js',
   },
-  plugins: [
-    babel({
-      babelrc: false,
-      presets: [
-        ['env', { modules: false }],
-        'stage-3',
-      ],
-      exclude: '**/node_modules/**',
-      plugins: ['external-helpers'],
-    }),
-    uglify(),
-  ],
+  plugins,
 });
 
 export default [
