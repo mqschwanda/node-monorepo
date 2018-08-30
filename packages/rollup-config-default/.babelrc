@@ -4,5 +4,9 @@
       "modules": false
     }],
     "stage-3"
+  ],
+  "ignore": "**/node_modules/**",
+  "plugins": [
+    "external-helpers"
   ]
 }
