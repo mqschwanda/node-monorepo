@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-scripts": "^0.0.8",
-    "@mqschwanda/scripts": "^0.0.11"
+    "@mqschwanda/rollup-scripts": "^0.0.9",
+    "@mqschwanda/scripts": "^0.0.12"
   },
   "dependencies": {
     "@mqschwanda/compose": "^0.0.1",

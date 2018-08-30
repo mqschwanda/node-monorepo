@@ -6,8 +6,8 @@ import { uglify } from 'rollup-plugin-uglify';
 
 /**
  * this config file is being imported directly into the src and bundled into
- * into the module. We need to make sure that requiring the `package.json` will
- * not throw an error so we wrap it in a try catch block.
+ * the module. We need to make sure that requiring the `package.json` will not
+ * throw an error so we wrap it in a try catch block.
  */
 let packageJSON;
 try {
@@ -36,6 +36,10 @@ const getExternals = ({
 export default {
   input: 'src/index.js',
   plugins: [
+    nodeResolve({
+      preferBuiltins: true,
+    }),
+    commonjs(),
     babel({
       babelrc: false,
       presets: [
@@ -48,10 +52,6 @@ export default {
       ],
     }),
     uglify(),
-    nodeResolve({
-      preferBuiltins: true,
-    }),
-    commonjs(),
   ],
   output: {
     file: 'dist/index.js',
