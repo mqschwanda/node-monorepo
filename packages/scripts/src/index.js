@@ -1,10 +1,11 @@
 import { dim } from 'chalk';
 import childProcess from 'child_process';
 
-const logScript = (script) => console.log(dim(`$ ${script}`));
+const logScript = (script) => {
+  console.log(dim(`$ ${script}`));
+}
 
 export const exec = (script) => {
-  // console.log(dim(`$ ${script}`));
   logScript(script);
 
   return new Promise((resolve, reject) => {
@@ -15,3 +16,5 @@ export const exec = (script) => {
     });
   }).catch(console.error);
 };
+
+export default exec;

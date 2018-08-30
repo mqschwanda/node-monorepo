@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-config-default": "^0.0.5",
+    "@mqschwanda/rollup-config-default": "^0.0.6",
     "rollup": "^0.64.1"
   },
   "dependencies": {
