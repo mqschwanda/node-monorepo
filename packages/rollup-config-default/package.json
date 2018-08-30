@@ -1,7 +1,7 @@
 {
   "name": "@mqschwanda/rollup-config-default",
   "description": "configuration used by @mqschwanda/rollup",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@mqschwanda/compose": "^0.0.1",
+    "cross-spawn": "^6.0.5",
     "deepmerge": "^2.1.1",
     "rollup-node-externals": "^0.0.1-2",
     "rollup-plugin-babel": "^3.0.7",
@@ -37,7 +38,6 @@
     "rollup-plugin-node-globals": "^1.2.1",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^4.0.0",
-    "spawn-sync": "^2.0.0",
-    "cross-spawn": "^6.0.5"
+    "spawn-sync": "^2.0.0"
   }
 }
