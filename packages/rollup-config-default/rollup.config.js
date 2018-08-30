@@ -16,10 +16,22 @@ try {
   packageJSON = {
     name: '',
     dependencies: [],
+    devDependencies: [],
+    peerDependencies: [],
   };
 }
 
-const { name, dependencies } = packageJSON;
+const { name } = packageJSON;
+
+const getExternals = ({
+  dependencies = {},
+  devDependencies = {},
+  peerDependencies = {},
+}) => [
+  ...Object.keys(dependencies),
+  ...Object.keys(devDependencies),
+  ...Object.keys(peerDependencies),
+];
 
 export default {
   input: 'src/index.js',
@@ -37,7 +49,7 @@ export default {
     }),
     uglify(),
     nodeResolve({
-      preferBuiltins: false,
+      preferBuiltins: true,
     }),
     commonjs(),
   ],
@@ -48,5 +60,5 @@ export default {
     format: 'cjs',
     sourceMap: true,
   },
-  external: dependencies ? Object.keys(dependencies) : undefined,
+  external: getExternals(packageJSON),
 }

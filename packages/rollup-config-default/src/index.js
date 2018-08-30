@@ -7,19 +7,52 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import config from '../rollup.config';
 
+export const getExternals = ({
+  dependencies = {},
+  devDependencies = {},
+  peerDependencies = {},
+}) => [
+  ...Object.keys(dependencies),
+  ...Object.keys(devDependencies),
+  ...Object.keys(peerDependencies),
+];
+
+const isDefined = n => n !== undefined;
+const isDuplicate = (plugin, i, self) =>
+  i === self.findIndex(({ name }) => name === plugin.name);
+
+export const replacePlugins = (oldConfig, plugins = []) => {
+  const config = {
+    ...oldConfig,
+    plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
+  };
+
+  plugins.forEach(plugin => {
+    const i = config.plugins.findIndex(({ name }) => name === plugin.name);
+
+    if (i > -1) config.plugins[i] = plugin;
+    else config.plugins.push(plugin);
+  });
+
+  return config;
+}
+
 /**
  * remove any plugins that are being added from the new configuration object.
  * This will prevent duplication errors
  * @param  {[type]} oldConfig [description]
- * @param  {[type]} newConfig [description]
+ * @param  {[type]} plugins   [description]
  * @return {[type]}           [description]
  */
-export const trimPlugins = (oldConfig, newConfig) => {
-  const config = oldConfig;
+export const trimPlugins = (oldConfig, plugins = []) => {
+  const config = {
+    ...oldConfig,
+    plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
+  };
 
-  (newConfig.plugins || []).forEach(plugin => {
-    const i = newConfig.plugins.findIndex(({ name }) => name === plugin.name);
-    if (i > -1) delete config.plugins[i];
+  plugins.forEach(plugin => {
+    const i = plugins.findIndex(({ name }) => name === plugin.name);
+    if (i > -1) config.plugins.splice(i, 1);
   });
 
   return config;
@@ -30,7 +63,7 @@ export const trimPlugins = (oldConfig, newConfig) => {
  * @param  {[type]} config [description]
  * @return {[type]}        [description]
  */
-export const trimConfig = (oldConfig, newConfig) => {
+export const trimConfig = (oldConfig) => {
   const config = oldConfig;
   if (config.output) {
     if (config.output.name) delete config.output.name;
@@ -44,22 +77,9 @@ export const trimConfig = (oldConfig, newConfig) => {
 
 // export const trim = compose(trimConfig, trimPlugins);
 
-export const replacePlugins = (oldConfig, plugins = []) => {
-  const config = oldConfig;
-
-  plugins.forEach(plugin => {
-    const i = config.plugins.findIndex(({ name }) => name === plugin.name);
-
-    if (i > -1) config.plugins[i] = plugin;
-    else config.plugins.push(plugin);
-  });
-
-  return config;
-};
-
 export const mergeConfig = (oldConfig, newConfig) =>
   // merge(trim(oldConfig, newConfig), newConfig);
-  merge(trimPlugins(trimConfig(oldConfig), newConfig), newConfig);
+  merge(trimPlugins(trimConfig(oldConfig), newConfig.plugins), newConfig);
 
 /**
  * default package configuration
