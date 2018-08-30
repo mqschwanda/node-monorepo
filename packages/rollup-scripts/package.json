@@ -26,10 +26,10 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-config-default": "^0.0.6"
+    "@mqschwanda/rollup-config-default": "^0.0.13"
   },
   "dependencies": {
-    "@mqschwanda/scripts": "^0.0.7",
+    "@mqschwanda/scripts": "^0.0.9",
     "cross-spawn": "^6.0.5",
     "react-dev-utils": "^5.0.2",
     "spawn-sync": "^2.0.0"
