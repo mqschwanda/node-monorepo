@@ -30,7 +30,7 @@ export const replacePlugins = (oldConfig, plugins = []) => {
   plugins.forEach(plugin => {
     const i = config.plugins.findIndex(({ name }) => name === plugin.name);
 
-    if (i > -1) config.plugins[i] = plugin;
+    if (i > -1) config.plugins.splice(i, 1, plugin);
     else config.plugins.push(plugin);
   });
 
@@ -45,15 +45,20 @@ export const replacePlugins = (oldConfig, plugins = []) => {
  * @return {[type]}           [description]
  */
 export const trimPlugins = (oldConfig, plugins = []) => {
+  console.log({ oldConfig, plugins });
   const config = {
     ...oldConfig,
     plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
   };
 
+  console.log({ config });
+
   plugins.forEach(plugin => {
     const i = plugins.findIndex(({ name }) => name === plugin.name);
     if (i > -1) config.plugins.splice(i, 1);
   });
+
+  console.log({ config });
 
   return config;
 }
@@ -75,10 +80,8 @@ export const trimConfig = (oldConfig) => {
   return config;
 };
 
-// export const trim = compose(trimConfig, trimPlugins);
 
 export const mergeConfig = (oldConfig, newConfig) =>
-  // merge(trim(oldConfig, newConfig), newConfig);
   merge(trimPlugins(trimConfig(oldConfig), newConfig.plugins), newConfig);
 
 /**
