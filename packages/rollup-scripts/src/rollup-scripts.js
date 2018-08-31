@@ -90,8 +90,8 @@ switch (script) {
     const result = spawn.sync(
       'node',
       nodeArgs
-        .concat(requireResolve(`../scripts/${script}`, path.dirname(path.dirname(__filename))))
-        // .concat(require.resolve('../scripts/' + script))
+        .concat(requireResolve(`../dist/${script}`, path.dirname(path.dirname(__filename))))
+        // .concat(require.resolve('../dist/' + script))
         .concat(args.slice(scriptIndex + 1)),
       { stdio: 'inherit' }
     );
