@@ -71,6 +71,7 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
+const requireResolve = require('require-resolve');
 const spawn = require('react-dev-utils/crossSpawn');
 const args = process.argv.slice(2);
 
@@ -88,7 +89,8 @@ switch (script) {
     const result = spawn.sync(
       'node',
       nodeArgs
-        .concat(require.resolve('../scripts/' + script))
+        .concat(requireResolve('../scripts/' + script))
+        // .concat(require.resolve('../scripts/' + script))
         .concat(args.slice(scriptIndex + 1)),
       { stdio: 'inherit' }
     );
