@@ -44,7 +44,10 @@ const executableConfig = mergeDefaultExecutableConfig({
     file: bin['rollup-scripts'], // './bin/rollup-scripts.js',
     banner: '#!/usr/bin/env node',
   },
-  external: getExternals(packageJSON),
+  external:[
+    'path',
+    ...getExternals(packageJSON)
+  ],
 });
 
 export default [
