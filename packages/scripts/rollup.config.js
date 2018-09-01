@@ -1,6 +1,6 @@
 import {
-  mergeDefaultNodeConfig,
-  mergeDefaultExecutableConfig,
+  buildDefaultNodeConfig,
+  // buildDefaultExecutableConfig,
   getExternals,
 } from '@mqschwanda/rollup-config-default';
 import babel from 'rollup-plugin-babel';
@@ -16,13 +16,13 @@ const plugins = [
       ['env', { modules: false }],
       'stage-3',
     ],
-    exclude: '**/node_modules/**',
+    exclude: 'node_modules/**',
     plugins: ['external-helpers'],
   }),
   uglify(),
 ];
 
-const nodeConfig = mergeDefaultNodeConfig({
+const nodeConfig = buildDefaultNodeConfig({
   input: 'src/index.js',
   output: {
     name,
@@ -34,7 +34,7 @@ const nodeConfig = mergeDefaultNodeConfig({
   plugins,
 });
 
-const executableConfig = mergeDefaultExecutableConfig({
+const executableConfig = buildDefaultNodeConfig({
   input: 'src/handle-unhandled-rejections.js',
   output: {
     name: 'handle-unhandled-rejections',
