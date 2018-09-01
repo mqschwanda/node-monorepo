@@ -39,7 +39,7 @@ const getScriptArgs = (scripts, getScriptPath = getScriptPath) => {
   return { script, args };
 };
 
-const { script, args } = getScriptArgs(scripts, _getScriptPath);
+const { script, args } = getScriptArgs(scripts, getScriptPath);
 
 const runScript = () => {
   const { signal, status } = crossSpawn.sync('node', args, { stdio: 'inherit' });
