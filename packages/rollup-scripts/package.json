@@ -26,13 +26,14 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-config-default": "^0.0.14"
+    "@mqschwanda/rollup-config-default": "^0.0.14",
+    "rollup-plugin-postprocess": "^1.0.2",
+    "rollup-plugin-replace": "^2.0.0"
   },
   "dependencies": {
     "@mqschwanda/scripts": "^0.0.12",
     "cross-spawn": "^6.0.5",
     "react-dev-utils": "^5.0.2",
-    "require-resolve": "^0.0.2",
     "spawn-sync": "^2.0.0"
   }
 }

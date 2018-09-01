@@ -7,6 +7,7 @@ import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 import nodeResolve from 'rollup-plugin-node-resolve';
+import postprocess from 'rollup-plugin-postprocess';
 
 import packageJSON, { name, bin } from './package.json';
 
@@ -28,7 +29,7 @@ const nodeConfig = mergeDefaultNodeConfig({
         ['env', { modules: false }],
         'stage-3',
       ],
-      exclude: '**/node_modules/**',
+      exclude: 'node_modules/**',
       plugins: [
         'external-helpers',
       ],
@@ -48,6 +49,20 @@ const executableConfig = mergeDefaultExecutableConfig({
     'path',
     ...getExternals(packageJSON)
   ],
+  plugins: [
+    commonjs(),
+    postprocess([
+      /**
+       * commonjs will change any dynamic require into a simple function that
+       * returns an error.
+       * @see {@link https://github.com/winstonjs/logform/issues/5}
+       * To hack this error we will swap `commonjsRequire.resolve` with an alias
+       * before running commonjs and replace the alias with the original name
+       * afterwards.
+       */
+      [/(commonjsRequire\.resolve)/, 'require.resolve'],
+    ]),
+  ]
 });
 
 export default [
