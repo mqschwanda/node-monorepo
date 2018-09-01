@@ -32,10 +32,10 @@ This package includes configuration used by [@mqschwanda/rollup](https://github.
   export default defaultConfig;
   ```
 
-- `mergeDefaultConfig`
+- `buildDefaultConfig`
   ```jsx
-  import { mergeDefaultConfig } from '@mqschwanda/rollup-config-default';
-  const config = mergeDefaultConfig({
+  import { buildDefaultConfig } from '@mqschwanda/rollup-config-default';
+  const config = buildDefaultConfig({
     input: 'src/index.js'
   });
 
@@ -64,10 +64,10 @@ This package includes configuration used by [@mqschwanda/rollup](https://github.
   export default defaultNpmConfig;
   ```
 
-- `mergeDefaultNpmConfig`
+- `buildDefaultNpmConfig`
   ```jsx
-  import { mergeDefaultNpmConfig } from '@mqschwanda/rollup-config-default';
-  const config = mergeDefaultNpmConfig({
+  import { buildDefaultNpmConfig } from '@mqschwanda/rollup-config-default';
+  const config = buildDefaultNpmConfig({
     input: 'src/index.js'
   });
 

@@ -45,20 +45,15 @@ export const replacePlugins = (oldConfig, plugins = []) => {
  * @return {[type]}           [description]
  */
 export const trimPlugins = (oldConfig, plugins = []) => {
-  // console.log({ oldConfig: oldConfig.plugins, plugins });
   const config = {
     ...oldConfig,
     plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
   };
 
-  // console.log({ config: config.plugins });
-
   plugins.forEach(plugin => {
     const i = config.plugins.findIndex(({ name }) => name === plugin.name);
     if (i > -1) config.plugins.splice(i, 1);
   });
-
-  // console.log({ config: config.plugins });
 
   return config;
 }
@@ -80,9 +75,12 @@ export const trimConfig = (oldConfig) => {
   return config;
 };
 
+export const trim = (oldConfig, { plugins = [] } = {}) =>
+  trimPlugins(trimConfig(oldConfig), plugins)
 
-export const mergeConfig = (oldConfig, newConfig) =>
-  merge(trimPlugins(trimConfig(oldConfig), newConfig.plugins), newConfig);
+
+export const buildConfig = (oldConfig, newConfig = {}) =>
+  merge(trim(oldConfig, newConfig), newConfig);
 
 /**
  * default package configuration
@@ -91,25 +89,48 @@ export const mergeConfig = (oldConfig, newConfig) =>
 export { config };
 export const defaultConfig = config;
 
-export const mergeDefaultConfig = (newConfig) =>
-  mergeConfig(defaultConfig, newConfig);
+/**
+ * [buildDefaultConfig description]
+ * @param  {[type]} newConfig [description]
+ * @return {[type]}           [description]
+ * @since 0.0.15
+ */
+export const buildDefaultConfig = (newConfig) =>
+  buildConfig(defaultConfig, newConfig);
+/**
+ * [buildDefaultConfig description]
+ * @since 0.0.1
+ */
+export const mergeDefaultConfig = buildDefaultConfig;
 
 /**
  * npm package configuration. This is for code that is bundled to be published
  * to npm. This will optimize the code for both browser and node where possible.
  * @type {[type]}
  */
-export const defaultNpmConfig = mergeDefaultConfig({});
+export const defaultNpmConfig = buildDefaultConfig();
 
-export const mergeDefaultNpmConfig = (newConfig) =>
-  mergeConfig(defaultNpmConfig, newConfig);
+/**
+ * [buildDefaultNpmConfig description]
+ * @param  {[type]} newConfig [description]
+ * @return {[type]}           [description]
+ * @since 0.0.15
+ */
+export const buildDefaultNpmConfig = (newConfig) =>
+  buildConfig(defaultNpmConfig, newConfig);
+/**
+ * [mergeDefaultNpmConfig description]
+ * @type {[type]}
+ * @since 0.0.1
+ */
+export const mergeDefaultNpmConfig = buildDefaultNpmConfig
 
 /**
  * node package configuration. This is for code that is bundled to run on node
  * only (not optimized for browser).
  * @type {[type]}
  */
-export const defaultNodeConfig = mergeDefaultNpmConfig({
+export const defaultNodeConfig = buildDefaultNpmConfig({
   output: {
     format: 'cjs',
   },
@@ -123,24 +144,48 @@ export const defaultNodeConfig = mergeDefaultNpmConfig({
   ]
 });
 
-export const mergeDefaultNodeConfig = (newConfig) =>
-  mergeConfig(defaultNodeConfig, newConfig);
+/**
+ * [buildDefaultNodeConfig description]
+ * @param  {[type]} newConfig [description]
+ * @return {[type]}           [description]
+ * @since 0.0.15
+ */
+export const buildDefaultNodeConfig = (newConfig) =>
+  buildConfig(defaultNodeConfig, newConfig);
+/**
+ * [mergeDefaultNodeConfig description]
+ * @type {[type]}
+ * @since 0.0.1
+ */
+export const mergeDefaultNodeConfig = buildDefaultNodeConfig;
 
 /**
  * executable package configuration. This is for code that is bundled to run as
  * a cli or shell script.
  * @type {[type]}
  */
-export const defaultExecutableConfig = mergeDefaultNodeConfig({
+export const defaultExecutableConfig = buildDefaultNodeConfig({
   output: {
     format: 'cjs',
+    banner: '#!/usr/bin/env node',
   },
   plugins: [
     executable(),
   ],
 });
-
-export const mergeDefaultExecutableConfig = (newConfig) =>
-  mergeConfig(defaultExecutableConfig, newConfig);
+/**
+ * [buildDefaultExecutableConfig description]
+ * @param  {[type]} newConfig [description]
+ * @return {[type]}           [description]
+ * @since 0.0.15
+ */
+export const buildDefaultExecutableConfig = (newConfig) =>
+  buildConfig(defaultExecutableConfig, newConfig);
+/**
+ * [mergeDefaultExecutableConfig description]
+ * @type {[type]}
+ * @since 0.0.1
+ */
+export const mergeDefaultExecutableConfig = buildDefaultExecutableConfig;
 
 export default config;

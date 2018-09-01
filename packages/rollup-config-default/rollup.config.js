@@ -46,7 +46,7 @@ export default {
         ['env', { modules: false }],
         'stage-3',
       ],
-      exclude: '**/node_modules/**',
+      exclude: 'node_modules/**',
       plugins: [
         'external-helpers',
       ],

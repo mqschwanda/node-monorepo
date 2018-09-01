@@ -23,13 +23,11 @@
   },
   "devDependencies": {
     "@mqschwanda/rollup": "^0.0.1",
-    "@mqschwanda/rollup-scripts": "^0.0.9",
+    "@mqschwanda/rollup-scripts": "^0.0.16",
     "@mqschwanda/scripts": "^0.0.12"
   },
   "dependencies": {
     "@mqschwanda/compose": "^0.0.1",
-    "cross-spawn": "^6.0.5",
-    "deepmerge": "^2.1.1",
     "rollup-node-externals": "^0.0.1-2",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.6",
@@ -37,7 +35,6 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.2.1",
     "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-uglify": "^4.0.0",
-    "spawn-sync": "^2.0.0"
+    "rollup-plugin-uglify": "^4.0.0"
   }
 }
