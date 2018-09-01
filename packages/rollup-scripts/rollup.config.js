@@ -1,6 +1,6 @@
 import {
-  mergeDefaultNodeConfig,
-  mergeDefaultExecutableConfig,
+  buildDefaultNodeConfig,
+  buildDefaultExecutableConfig,
   getExternals,
 } from '@mqschwanda/rollup-config-default';
 import babel from 'rollup-plugin-babel';
@@ -11,7 +11,7 @@ import postprocess from 'rollup-plugin-postprocess';
 
 import packageJSON, { name, bin } from './package.json';
 
-const nodeConfig = mergeDefaultNodeConfig({
+const nodeConfig = buildDefaultNodeConfig({
   input: 'src/build.js',
   output: {
     name: `${name}-build`,
@@ -38,7 +38,7 @@ const nodeConfig = mergeDefaultNodeConfig({
   ],
 });
 
-const executableConfig = mergeDefaultExecutableConfig({
+const executableConfig = buildDefaultExecutableConfig({
   input: 'src/rollup-scripts.js',
   output: {
     name,
