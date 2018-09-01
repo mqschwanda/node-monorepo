@@ -1,7 +1,7 @@
 {
   "name": "@mqschwanda/rollup-scripts",
   "description": "scripts used by @mqschwanda/rollup",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "main": "dist/build.js",
   "license": "MIT",
   "bin": {
