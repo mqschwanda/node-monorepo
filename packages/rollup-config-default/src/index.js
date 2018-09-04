@@ -17,15 +17,16 @@ export const getExternals = ({
   ...Object.keys(peerDependencies),
 ];
 
-const isDefined = n => n !== undefined;
-const isDuplicate = (plugin, i, self) =>
-  i === self.findIndex(({ name }) => name === plugin.name);
+// const isDefined = n => n !== undefined;
+// const isDuplicate = (plugin, i, self) =>
+//   i === self.findIndex(({ name }) => name === plugin.name);
 
 export const replacePlugins = (oldConfig, plugins = []) => {
-  const config = {
-    ...oldConfig,
-    plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
-  };
+  const config = oldConfig;
+  // const config = {
+  //   ...oldConfig,
+  //   plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
+  // };
 
   plugins.forEach(plugin => {
     const i = config.plugins.findIndex(({ name }) => name === plugin.name);
@@ -45,10 +46,11 @@ export const replacePlugins = (oldConfig, plugins = []) => {
  * @return {[type]}           [description]
  */
 export const trimPlugins = (oldConfig, plugins = []) => {
-  const config = {
-    ...oldConfig,
-    plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
-  };
+  const config = oldConfig;
+  // const config = {
+  //   ...oldConfig,
+  //   plugins: oldConfig.plugins.filter(isDefined).filter(isDuplicate),
+  // };
 
   plugins.forEach(plugin => {
     const i = config.plugins.findIndex(({ name }) => name === plugin.name);
